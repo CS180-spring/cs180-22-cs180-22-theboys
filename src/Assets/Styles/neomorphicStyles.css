@@ -21,6 +21,7 @@
     background: linear-gradient(144.05deg, #32383E -69.07%, #17191C 122.22%);
     box-shadow: -4px -2px 16px rgba(195, 200, 205, 0.08), 4px 4px 18px rgba(0, 0, 0, 0.5);
     border-radius: 16px;
+    cursor: pointer;
 }
 
 .neomorphic-button-flat-pressed{
@@ -34,6 +35,7 @@
     background: linear-gradient(303.77deg, #2C333A -71.57%, #1C1E22 59.28%, #121416 100%);
     box-shadow: inset -3px -3px 5px rgba(255, 255, 255, 0.01), inset 3px 3px 5px rgba(0, 0, 0, 0.3);
     border-radius: 16px;
+    cursor: pointer;
 }
 
 .neomorphic-button-flat-pressed::before{
