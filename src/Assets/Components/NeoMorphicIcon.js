@@ -18,6 +18,7 @@ export default function NeoMorphicIcon({iconFilepath, style, callback})
         <div 
             className= {clicked ? "neomorphic-button-flat-pressed" : "neomorphic-button-flat-unpressed"}
             onClick={()=>{Toggle()}}   
+            style = {{...style}}
         >    
             <img src= {`${process.env.PUBLIC_URL}${iconFilepath}${clicked ? '-selected' : ''}.png`}/>
         </div>
