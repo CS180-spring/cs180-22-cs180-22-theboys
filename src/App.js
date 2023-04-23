@@ -4,16 +4,18 @@ import NeoMorphicIcon from './Assets/Components/NeoMorphicIcon';
 import './Assets/Styles/neomorphicStyles.css'
 import './Assets/Styles/textStyles.css'
 import ProductDisplayCard from './Assets/Components/ProducDisplayCard';
+import ProductGrid from './Assets/Components/ProductGrid';
+import useGetCards from './Assets/Hooks/useGetCards.js';
+
+import './Assets/Styles/GridStyles.css'
+
+import './Assets/Hooks/useGetCards.js'
 
 function App() {
+  let products =  useGetCards();
+
   return (
-    
-        <ProductDisplayCard 
-          itemImage={`${process.env.PUBLIC_URL}Images/Bored Apes/QmabwwMDTAvKNvcapqWgnRDkMqXuMSkpK5Q8oopMhT7wAU.png`}
-          itemPrice={25}
-          itemTitle={'Bored Ape #1'}  
-        />
-        
+    <ProductGrid products={products}/> 
   );
 }
 

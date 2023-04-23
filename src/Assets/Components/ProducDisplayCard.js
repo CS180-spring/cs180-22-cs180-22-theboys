@@ -9,11 +9,11 @@ export default function  ProductDisplayCard({itemTitle, itemPrice, itemImage})
 {
     return (
     
-        <div className='neomorphic-card' style = {{left: '25px', top: "25px", width: "300px"}}>
+        <div className='neomorphic-card'>
        
         <div className='image-display'>
         <img 
-           src={itemImage}/>
+           src={ `${itemImage}`}/>
         </div>
 
         <div 
@@ -35,7 +35,7 @@ export default function  ProductDisplayCard({itemTitle, itemPrice, itemImage})
             marginTop: '10px',
             marginBottom: 'auto'
           }}
-        >{`${itemPrice}`}</div>
+        >{`$${itemPrice}`}</div>
         <NeoMorphicIcon 
           iconFilepath={`Images/shopping-cart` } 
           style = {{
