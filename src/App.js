@@ -10,12 +10,18 @@ import useGetCards from './Assets/Hooks/useGetCards.js';
 import './Assets/Styles/GridStyles.css'
 
 import './Assets/Hooks/useGetCards.js'
+import SiteHeader from './Assets/Components/SiteHeader';
+
+
 
 function App() {
   let products =  useGetCards();
 
   return (
-    <ProductGrid products={products}/> 
+    <div>
+    <SiteHeader/>
+    <ProductGrid products={products}/>
+    </div>
   );
 }
 
