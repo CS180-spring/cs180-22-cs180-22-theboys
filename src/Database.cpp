@@ -22,5 +22,18 @@ int main(){
 
     }
 
+    string connection_string("host=localhost port = 5432 dbname=sales_db2 user=" + credentials[0] + " password=" + credentials[1]);
+
+    pqxx::connection con(connection_string.c_str());
+
+    pqxx::work wrk(con);
+
+    pqxx::result res = wrk.exec("SELECT * FROM customers");
+
+    for(int i = 0; i < res.size(); i++){
+
+        cout << "First Name: " << res[i][0] << " Last Name: " << res[i][1] << endl;
+    }
+
     return 0;
 }
