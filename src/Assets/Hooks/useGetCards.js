@@ -22,7 +22,6 @@ export default function useGetCards()
 
     let productCards = files.map((item, index) => {
         const itemImage = `${process.env.PUBLIC_URL}/Images/Bored Apes/${item}`;
-        console.log(itemImage)
         return (
             <ProductDisplayCard 
                 key={index}

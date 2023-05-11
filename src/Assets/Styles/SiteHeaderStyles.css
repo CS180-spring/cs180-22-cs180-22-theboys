@@ -1,0 +1,28 @@
+.site-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    width:90%;
+    height:80px;
+}
+
+.site-header > .cart-group{
+    display: flex;
+    flex-direction: row;
+    width:min-content;
+    align-content: center;
+
+}
+
+.site-header .cart-group > *{
+    display: flex;
+    flex-direction: row;
+    width:60px;
+    align-content: center;
+
+}
+
+.site-header *{
+    align-self: center;
+}
