@@ -5,7 +5,7 @@ const {
     GetProductById,
     UpdateProduct,
     DeleteProduct
-} = require('../db/productQueries.js');
+} = require('../controllers/productQueries.js');
 
 const router = express.Router();
 
