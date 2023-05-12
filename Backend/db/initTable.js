@@ -1,10 +1,10 @@
 const { Client } = require('pg');
 
 const client = new Client({
-    user: 'me',
+    user: 'postgres',
     host: 'localhost',
-    database: 'api',
-    password: 'password',
+    database: 'postgres',
+    password: 'nodePG123!',
     port: '5432'
 });
 
@@ -22,16 +22,16 @@ const execute = async (query) => {
 };
 
 const text = `
-    CREATE TABLE IF NOT EXISTS "users" (
-	    "id" SERIAL,
-	    "name" VARCHAR(100) NOT NULL, 
-        "imageUrl" VARCHAR(100) NOT NULL, 
-        "price" VARCHAR(100) NOT NULL, 
-        "quantity" VARCHAR(100) NOT NULL, 
-        "description" VARCHAR(100) NOT NULL, 
-        "onSale" VARCHAR(100) NOT NULL, 
-        "salePrice" VARCHAR(100) NOT NULL,
-	    PRIMARY KEY ("id")
+    CREATE TABLE IF NOT EXISTS "products" (
+	    id SERIAL,
+	    name VARCHAR(100) NOT NULL, 
+        imageUrl VARCHAR(100) NOT NULL, 
+        price VARCHAR(100) NOT NULL, 
+        quantity VARCHAR(100) NOT NULL, 
+        description VARCHAR(100) NOT NULL, 
+        onSale VARCHAR(100) NOT NULL, 
+        salePrice VARCHAR(100) NOT NULL,
+	    PRIMARY KEY (id)
     );`;
 
 execute(text).then(result => {

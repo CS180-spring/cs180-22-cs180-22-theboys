@@ -1,9 +1,9 @@
 const Pool = require('pg').Pool
 const pool = new Pool({
-    user: 'me',
+    user: 'postgres',
     host: 'localhost',
-    database: 'api',
-    password: 'password',
+    database: 'postgres',
+    password: 'nodePG123!',
     port: '5432'
 })
 
@@ -11,6 +11,7 @@ const GetProducts = async (req, res) => {
     pool.query('SELECT * FROM products ORDER BY id ASC', (err, results) => {
         if(err)
         {
+            console.log(err);
             throw err;
         }
         res.status(200).json(results.rows)
@@ -23,13 +24,14 @@ const GetProductById = async (req, res)=>{
     pool.query('SELECT * FROM products WHERE id = $1', [id], (err, results)=>{
         if(err)
         {
+            console.log(err);
             throw err;
         }
         res.status(200).json(results.rows);
     })
 }
 
-const CreateProduct = async (req, res)=> {
+const CreateProduct = async (req, res)=> {    
     const {
         name, 
         imageUrl, 
@@ -46,6 +48,7 @@ const CreateProduct = async (req, res)=> {
     (err, results)=> {
         if(err)
         {
+            console.log(err);
             throw err;
         }
 
@@ -77,6 +80,7 @@ const UpdateProduct = async (req, res)=> {
         (err, results) => {
             if(err)
             {
+                console.log(err);
                 throw err;
             }
 
