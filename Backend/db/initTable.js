@@ -10,8 +10,9 @@ const pool = new Pool({
 });
 
 const queries = [
+    `CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`,
     `CREATE TABLE IF NOT EXISTS "products" (
-	    id SERIAL,
+	    id uuid DEFAULT uuid_generate_v4 (),
 	    name VARCHAR(100) NOT NULL, 
         imageUrl VARCHAR(100) NOT NULL, 
         price VARCHAR(100) NOT NULL, 
@@ -22,10 +23,10 @@ const queries = [
 	    PRIMARY KEY (id)
     );`,
     `CREATE TABLE IF NOT EXISTS "users" (
-	    id SERIAL,
-	    username VARCHAR(100) NOT NULL, 
+	    id uuid DEFAULT uuid_generate_v4 () NOT NULL,
+	    email VARCHAR(100) NOT NULL, 
+        username VARCHAR(100) NOT NULL, 
         password VARCHAR(100) NOT NULL, 
-        email VARCHAR(100) NOT NULL, 
         isTempUser BOOLEAN NOT NULL,
         PRIMARY KEY (id)
     );`
@@ -48,9 +49,9 @@ const execute = async (query) => {
 
 //For each table type we have, create the table if it doesn not already exist.
 const InitTables = async()=>{
-    for(const element of queries)
+    for(let i = 0; i < queries.length; i++)
     {
-        await execute(element).then(result => {
+        await execute(queries[i]).then(result => {
             console.log('Table created.') 
         }) 
     }

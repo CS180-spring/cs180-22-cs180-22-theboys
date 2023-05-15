@@ -1,6 +1,8 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const {StatusCodes} = require('http-status-codes')
+require('dotenv').config();
+
 const Pool = require('pg').Pool;
 const pool = new Pool({
     user: process.env.PG_USER,
@@ -30,6 +32,8 @@ const Login = async(req, res)=> {
         return res.status(StatusCodes.UNAUTHORIZED).send('Invalid Password');
     }
 
+    const token = await CreateJWT(user);
+    user.token = token;
     res.status(200).json(user);
 
 }
@@ -46,7 +50,7 @@ const Register = async(req, res)=> {
     {
         throw new Error("Please provide a username, email, and password");
     }
-    const user  = await CheckForEmail(email);
+    let user  = await CheckForEmail(email);
     if(user)
     {
         throw new Error(`User already exists with email ${email}`);
@@ -69,7 +73,11 @@ const Register = async(req, res)=> {
             $4
         ) RETURNING *`,
         [username, hashedPassword, email, false])
-        res.status(200).json(result.rows[0])
+
+        user = result.rows[0];
+        const token = await CreateJWT(user);
+        user.token = token;
+        res.status(200).json(user);
     }
     catch(err)
     {
@@ -102,4 +110,16 @@ const CheckForEmail = async(email) =>
 module.exports = {
     Login,
     Register
+}
+
+const CreateJWT = async (user) => {
+    return jwt.sign({
+        userId: user.id,
+        name: user.username
+    },
+    process.env.JWT_SECRET,
+    {
+        expiresIn: process.env.JWT_LIFETIME
+    }
+    )
 }
