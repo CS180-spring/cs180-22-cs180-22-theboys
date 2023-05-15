@@ -29,6 +29,13 @@ const queries = [
         password VARCHAR(100) NOT NULL, 
         isTempUser BOOLEAN NOT NULL,
         PRIMARY KEY (id)
+    );`,
+    `CREATE TABLE IF NOT EXISTS "cartItems" (
+	    id uuid DEFAULT uuid_generate_v4 () NOT NULL,
+        productId VARCHAR NOT NULL,
+	    userId VARCHAR NOT NULL,
+        quantity integer NOT NULL,
+        PRIMARY KEY (id)
     );`
 
 
