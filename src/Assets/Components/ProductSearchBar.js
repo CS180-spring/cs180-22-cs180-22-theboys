@@ -8,10 +8,15 @@ export default function ProductSearchBar({})
     
     return(
         <form className="search-bar">
-            <input type="text"value={searchInput}onChange={(e)=>{setSearchInput(e.target.value)}}>
+            <input 
+                type="text"
+                value={searchInput}
+                size={"5"}
+                onChange={(e)=>{setSearchInput(e.target.value)}}
+            >
 
             </input>
-            <img src={`${process.env.PUBLIC_URL}Images/search-icon.png`}style={{width:"40px",height:"40px"}}/>
+            <img src={`${process.env.PUBLIC_URL}Images/search-icon.png`}/>
         </form>
     )
 }

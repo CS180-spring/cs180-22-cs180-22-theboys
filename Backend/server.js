@@ -1,6 +1,6 @@
 const db = require('./db/initTable.js')
 require('dotenv').config();
-
+const path = require('node:path')
 const express= require('express');
 const cors = require('cors');
 const authenticationMiddleware = require('./middleware/authenticationMiddleware.js')
@@ -18,7 +18,14 @@ app.use('/api/v1/products', ProductsRouter);
 app.use('/api/v1/auth', AuthRouter);
 app.use('/api/v1/cart', authenticationMiddleware, CartRouter)
 
-const port = process.env.PORT || 3001;
+/*
+app.use(express.static(path.join(__dirname, "../public")));
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../", "public", "index.html"));
+});
+*/
+
+const port = process.env.SERVER_PORT || 3001;
 
 const start = async ()=> {
     try{
