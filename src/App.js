@@ -21,9 +21,7 @@ function App() {
   return (
     <div>
     <SiteHeader/>
-    <ProductViewPage/>
-    {/*<ProductGrid products={products}/>*/}
-
+    <ProductGrid products={products}/>
     </div>
   );
 }

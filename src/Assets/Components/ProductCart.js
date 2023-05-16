@@ -8,7 +8,7 @@ export default function ProductCart({})
     return(
         <div>
             <img src={`${process.env.PUBLIC_URL}Images/shopping-cart.png`}style={{width:"40px",height:"40px"}}/>
-            <div className="title">{itemsInCart}</div>
+            <div className="title-text">{itemsInCart}</div>
         </div>
     )
 }

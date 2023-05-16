@@ -17,7 +17,7 @@ export default function  ProductDisplayCard({itemTitle, itemPrice, itemImage})
         </div>
 
         <div 
-          className='title'
+          className='title-text'
           style={{
             fontSize: '1.6em',
             marginLeft: '20px',
@@ -27,7 +27,7 @@ export default function  ProductDisplayCard({itemTitle, itemPrice, itemImage})
         >{itemTitle}</div>
         
         <div 
-          className='title'
+          className='title-text'
           style={{
             fontSize: '1.3em',
             marginLeft: '20px',

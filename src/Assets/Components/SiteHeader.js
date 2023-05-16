@@ -8,12 +8,32 @@ export default function SiteHeader({})
 {
     
     return(
-        <div className="site-header">
-            <ProductSearchBar/>
-            <div className='title' style={{fontSize:"2em"}}>Bored Ape Escape</div>
-            <div className="cart-group">
-                <div className="title"onClick={()=>{console.log("sign in")}}>Sign In</div>
-                <ProductCart/>
+        <div>
+            <div className="site-header">
+                <ProductSearchBar/>
+                <div className='title-text' style={{fontSize:"2em"}}>Bored Ape Escape</div>
+                <div className="cart-group">
+                <div className="title-text"onClick={()=>{console.log("sign in")}}>Sign In</div>
+                    <ProductCart/>
+                </div>
+            </div>
+
+            <div className="navigation-menu">
+                <div className="navigation-menu-item">
+                    <div className="title-text">{"Home"}</div>
+                </div>
+                <div className="navigation-menu-item">
+                    <div className="title-text">{"Shop"}</div>
+                </div>
+                <div className="navigation-menu-item">
+                    <div className="title-text">{"News & Events"}</div>
+                </div>
+                <div className="navigation-menu-item">
+                    <div className="title-text">{"About"}</div>
+                </div>
+                <div className="navigation-menu-item">
+                    <div className="title-text">{"Contact"}</div>
+                </div>
             </div>
         </div>
     )
