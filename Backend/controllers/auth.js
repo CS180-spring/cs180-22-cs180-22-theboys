@@ -61,10 +61,10 @@ const Register = async(req, res)=> {
     const hashedPassword = await bcrypt.hash(password, salt);
     try{
         const result = await pool.query(`INSERT INTO users (
-            username,
-            password,
-            email,
-            isTempUser
+            userName,
+            userPassword,
+            userEmail,
+            userIsTempUser
         )
         VALUES (
             $1,
@@ -90,7 +90,7 @@ const CheckForEmail = async(email) =>
 {
     try{
         const {rows} = await pool.query(
-            `SELECT * FROM users WHERE email = $1`,
+            `SELECT * FROM users WHERE userEmail = $1`,
             [email]
         )
         const user = rows[0];

@@ -18,6 +18,7 @@ const Authenticate = async(req, res, next)=> {
             userId: payload.userId,
             name: payload.name
         }
+        next();
     }
     catch(err)
     {
