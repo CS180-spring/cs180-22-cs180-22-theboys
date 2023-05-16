@@ -20,8 +20,8 @@ function App() {
 
   return (
     <div>
-    <SiteHeader/>
-    <ProductGrid products={products}/>
+      <SiteHeader/>
+      {/*<ProductGrid products={products}/>*/}
     </div>
   );
 }
