@@ -17,7 +17,7 @@ const GetProducts = async (req, res) => {
             console.log(err);
             throw err;
         }
-        res.status(200).json(results.rows)
+        res.status(200).json({payload: results.rows})
     })
 }
 
@@ -116,7 +116,6 @@ const UpdateProduct = async (req, res)=> {
                 id
             ]
         )
-        console.log(results.rows[0])
         res.status(200).json({
             msg: `Product modified with ID: ${results.rows[0].productid}`,
             updatedEntry: results.rows[0]

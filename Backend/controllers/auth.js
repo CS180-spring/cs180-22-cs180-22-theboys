@@ -14,19 +14,19 @@ const pool = new Pool({
 
 
 const Login = async(req, res)=> {
-    const {email, password} = req.body;
+    const {userEmail, userPassword} = req.body;
 
-    if(!email || !password)
+    if(!userEmail || !userPassword)
     {
         throw new Error('Please provide an email and password');
     }
-    const user = await CheckForEmail(email);
+    const user = await CheckForEmail(userEmail);
     if(!user)
     {
-        throw new Error(`No user found with email ${email}`);
+        throw new Error(`No user found with email ${userEmail}`);
     }
 
-    const match = await bcrypt.compare(password, user.password);
+    const match = await bcrypt.compare(userPassword, user.userpassword);
     if(!match)
     {
         return res.status(StatusCodes.UNAUTHORIZED).send('Invalid Password');
@@ -41,24 +41,24 @@ const Login = async(req, res)=> {
 
 const Register = async(req, res)=> {
     const {
-        email, 
-        username, 
-        password
+        userEmail, 
+        userName, 
+        userPassword
     } = req.body;
 
-    if(!email || !username || !password)
+    if(!userEmail || !userName || !userPassword)
     {
         throw new Error("Please provide a username, email, and password");
     }
-    let user  = await CheckForEmail(email);
+    let user  = await CheckForEmail(userEmail);
     if(user)
     {
-        throw new Error(`User already exists with email ${email}`);
+        throw new Error(`User already exists with email ${userEmail}`);
     }
 
     //Generate the salt and hash the password before storing
     const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const hashedPassword = await bcrypt.hash(userPassword, salt);
     try{
         const result = await pool.query(`INSERT INTO users (
             userName,
@@ -72,7 +72,7 @@ const Register = async(req, res)=> {
             $3,
             $4
         ) RETURNING *`,
-        [username, hashedPassword, email, false])
+        [userName, hashedPassword, userEmail, false])
 
         user = result.rows[0];
         const token = await CreateJWT(user);
@@ -98,7 +98,7 @@ const CheckForEmail = async(email) =>
         {
             return null;
         }
-    
+        
         return user;
     }
     catch(err)
@@ -114,7 +114,7 @@ module.exports = {
 
 const CreateJWT = async (user) => {
     return jwt.sign({
-        userId: user.id,
+        userId: user.userid,
         name: user.username
     },
     process.env.JWT_SECRET,

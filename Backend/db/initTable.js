@@ -32,8 +32,8 @@ const queries = [
     );`,
     `CREATE TABLE IF NOT EXISTS "cartItems" (
 	    cartEntryId uuid DEFAULT uuid_generate_v4 () NOT NULL,
-        cartProductId VARCHAR NOT NULL,
-	    cartUserId VARCHAR NOT NULL,
+        cartProductId uuid NOT NULL,
+	    cartUserId uuid NOT NULL,
         cartQuantity integer NOT NULL,
         PRIMARY KEY (cartEntryId)
     );`
