@@ -20,7 +20,7 @@ function App() {
   return (
     <div>
     <SiteHeader/>
-    <ProductGrid products={products}/>
+    {/*<ProductGrid products={products}/>*/}
     </div>
   );
 }
