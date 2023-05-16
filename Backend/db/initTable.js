@@ -10,24 +10,32 @@ const pool = new Pool({
 });
 
 const queries = [
+    `CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`,
     `CREATE TABLE IF NOT EXISTS "products" (
-	    id SERIAL,
-	    name VARCHAR(100) NOT NULL, 
-        imageUrl VARCHAR(100) NOT NULL, 
-        price VARCHAR(100) NOT NULL, 
-        quantity VARCHAR(100) NOT NULL, 
-        description VARCHAR(100) NOT NULL, 
-        onSale VARCHAR(100) NOT NULL, 
-        salePrice VARCHAR(100) NOT NULL,
-	    PRIMARY KEY (id)
+	    productId uuid DEFAULT uuid_generate_v4 (),
+	    productName VARCHAR(100) NOT NULL, 
+        productImageUrl VARCHAR(100) NOT NULL, 
+        productPrice VARCHAR(100) NOT NULL, 
+        productQuantityAvailable VARCHAR(100) NOT NULL, 
+        productDescription VARCHAR(100) NOT NULL, 
+        productIsOnSale VARCHAR(100) NOT NULL, 
+        productSalePrice VARCHAR(100) NOT NULL,
+	    PRIMARY KEY (productId)
     );`,
     `CREATE TABLE IF NOT EXISTS "users" (
-	    id SERIAL,
-	    username VARCHAR(100) NOT NULL, 
-        password VARCHAR(100) NOT NULL, 
-        email VARCHAR(100) NOT NULL, 
-        isTempUser BOOLEAN NOT NULL,
-        PRIMARY KEY (id)
+	    userId uuid DEFAULT uuid_generate_v4 () NOT NULL,
+	    userEmail VARCHAR(100) NOT NULL, 
+        userName VARCHAR(100) NOT NULL, 
+        userPassword VARCHAR(100) NOT NULL, 
+        userIsTempUser BOOLEAN NOT NULL,
+        PRIMARY KEY (userId)
+    );`,
+    `CREATE TABLE IF NOT EXISTS "cartItems" (
+	    cartEntryId uuid DEFAULT uuid_generate_v4 () NOT NULL,
+        cartProductId uuid NOT NULL,
+	    cartUserId uuid NOT NULL,
+        cartQuantity integer NOT NULL,
+        PRIMARY KEY (cartEntryId)
     );`
 
 
@@ -48,9 +56,9 @@ const execute = async (query) => {
 
 //For each table type we have, create the table if it doesn not already exist.
 const InitTables = async()=>{
-    for(const element of queries)
+    for(let i = 0; i < queries.length; i++)
     {
-        await execute(element).then(result => {
+        await execute(queries[i]).then(result => {
             console.log('Table created.') 
         }) 
     }

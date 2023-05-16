@@ -9,14 +9,15 @@ const pool = new Pool({
     port: process.env.PG_PORT
 })
 
+
 const GetProducts = async (req, res) => {
-    pool.query('SELECT * FROM products ORDER BY id ASC', (err, results) => {
+    pool.query('SELECT * FROM products ORDER BY productId ASC', (err, results) => {
         if(err)
         {
             console.log(err);
             throw err;
         }
-        res.status(200).json(results.rows)
+        res.status(200).json({payload: results.rows})
     })
 }
 
@@ -24,7 +25,7 @@ const GetProductById = async (req, res)=>{
     const id = req.params.id;
 
     try{
-        const results = await pool.query('SELECT * FROM products WHERE id = $1', [id]) 
+        const results = await pool.query('SELECT * FROM products WHERE productId = $1', [id]) 
         res.status(200).json(results.rows[0]);
     }
     catch(err){
@@ -34,93 +35,111 @@ const GetProductById = async (req, res)=>{
 
 const CreateProduct = async (req, res)=> {    
     const {
-        name, 
-        imageUrl, 
-        price, 
-        quantity, 
-        description, 
-        onSale, 
-        salePrice
+        productName, 
+        productImageUrl, 
+        productPrice, 
+        productQuantityAvailable, 
+        productDescription, 
+        productIsOnSale, 
+        productSalePrice
     } = req.body; 
 
-    pool.query(
-        `INSERT INTO products (
-            name, 
-            imageUrl, 
-            price, 
-            quantity, 
-            description, 
-            onSale, 
-            salePrice
-        )
-        VALUES (
-            $1, 
-            $2, 
-            $3, 
-            $4, 
-            $5, 
-            $6, 
-            $7
-        ) RETURNING *`,
-    [name, imageUrl, price, quantity, description, onSale, salePrice],
-    (err, results)=> {
-        if(err)
-        {
-            console.log(err);
-            throw err;
-        }
-
-        res.status(200).json(`Product added with ID: ${results.rows[0].id}`);
-    })
+    try{
+        const results = await pool.query(
+            `INSERT INTO products (
+                productName, 
+                productImageUrl, 
+                productPrice, 
+                productQuantityAvailable, 
+                productDescription, 
+                productIsOnSale, 
+                productSalePrice
+            )
+            VALUES (
+                $1, 
+                $2, 
+                $3, 
+                $4, 
+                $5, 
+                $6, 
+                $7
+            ) RETURNING *`,
+            [        
+                productName, 
+                productImageUrl, 
+                productPrice, 
+                productQuantityAvailable, 
+                productDescription, 
+                productIsOnSale, 
+                productSalePrice
+            ]);
+        res.status(200).json(`Product added with id: ${results.rows[0].productid}`);
+    }
+    catch(err)
+    {
+        console.log(err);
+        throw err;
+    }
 }
 
 const UpdateProduct = async (req, res)=> {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
     const {
-        name, 
-        imageUrl, 
-        price, 
-        quantity, 
-        description, 
-        onSale, 
-        salePrice
+        productName, 
+        productImageUrl, 
+        productPrice, 
+        productQuantityAvailable, 
+        productDescription, 
+        productIsOnSale, 
+        productSalePrice
     } = req.body; 
-    pool.query(
-        'UPDATE products SET name = $1, imageUrl = $2, price = $3, quantity = $4, description = $5, onSale = $6, salePrice = $7',
-        [ name, 
-            imageUrl, 
-            price, 
-            quantity, 
-            description, 
-            onSale, 
-            salePrice
-        ],
-        (err, results) => {
-            if(err)
-            {
-                console.log(err);
-                throw err;
-            }
+    try{
+        const results = await pool.query(
+            `UPDATE products SET 
+                productName = $1, 
+                productImageUrl = $2, 
+                productPrice = $3, 
+                productQuantityAvailable = $4, 
+                productDescription = $5, 
+                productIsOnSale = $6, 
+                productSalePrice = $7
+                WHERE productId = $8
+                RETURNING *`,
+            [ 
+                productName, 
+                productImageUrl, 
+                productPrice, 
+                productQuantityAvailable, 
+                productDescription, 
+                productIsOnSale, 
+                productSalePrice,
+                id
+            ]
+        )
+        res.status(200).json({
+            msg: `Product modified with ID: ${results.rows[0].productid}`,
+            updatedEntry: results.rows[0]
+        })
 
-            res.status(200).json({
-                msg: `Product modified with ID: ${id}`,
-                updatedEntry: results.rows[0]
-            })
-            }
-    )
+    }
+    catch(err)
+    {
+        console.log(err);
+        throw err;
+    }
 }
 
 const DeleteProduct = async (req, res) => {
     const id = parseInt(req.params.id);
-
-    pool.query('DELETE FROM products WHERE id = $1', [id], (err, results) => {
-        if(err)
-        {
-            throw err;
-        }
-
+    try{
+        await pool.query('DELETE FROM products WHERE id = $1', [id])
         res.status(200).send(`Product delete with ID: ${id}`);
-    })
+    }
+    catch(err)
+    {
+        console.log(err);
+        throw err;
+    }
 }
 
 module.exports = {

@@ -1,6 +1,8 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const {StatusCodes} = require('http-status-codes')
+require('dotenv').config();
+
 const Pool = require('pg').Pool;
 const pool = new Pool({
     user: process.env.PG_USER,
@@ -12,24 +14,26 @@ const pool = new Pool({
 
 
 const Login = async(req, res)=> {
-    const {email, password} = req.body;
+    const {userEmail, userPassword} = req.body;
 
-    if(!email || !password)
+    if(!userEmail || !userPassword)
     {
         throw new Error('Please provide an email and password');
     }
-    const user = await CheckForEmail(email);
+    const user = await CheckForEmail(userEmail);
     if(!user)
     {
-        throw new Error(`No user found with email ${email}`);
+        throw new Error(`No user found with email ${userEmail}`);
     }
 
-    const match = await bcrypt.compare(password, user.password);
+    const match = await bcrypt.compare(userPassword, user.userpassword);
     if(!match)
     {
         return res.status(StatusCodes.UNAUTHORIZED).send('Invalid Password');
     }
 
+    const token = await CreateJWT(user);
+    user.token = token;
     res.status(200).json(user);
 
 }
@@ -37,30 +41,30 @@ const Login = async(req, res)=> {
 
 const Register = async(req, res)=> {
     const {
-        email, 
-        username, 
-        password
+        userEmail, 
+        userName, 
+        userPassword
     } = req.body;
 
-    if(!email || !username || !password)
+    if(!userEmail || !userName || !userPassword)
     {
         throw new Error("Please provide a username, email, and password");
     }
-    const user  = await CheckForEmail(email);
+    let user  = await CheckForEmail(userEmail);
     if(user)
     {
-        throw new Error(`User already exists with email ${email}`);
+        throw new Error(`User already exists with email ${userEmail}`);
     }
 
     //Generate the salt and hash the password before storing
     const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const hashedPassword = await bcrypt.hash(userPassword, salt);
     try{
         const result = await pool.query(`INSERT INTO users (
-            username,
-            password,
-            email,
-            isTempUser
+            userName,
+            userPassword,
+            userEmail,
+            userIsTempUser
         )
         VALUES (
             $1,
@@ -68,8 +72,12 @@ const Register = async(req, res)=> {
             $3,
             $4
         ) RETURNING *`,
-        [username, hashedPassword, email, false])
-        res.status(200).json(result.rows[0])
+        [userName, hashedPassword, userEmail, false])
+
+        user = result.rows[0];
+        const token = await CreateJWT(user);
+        user.token = token;
+        res.status(200).json(user);
     }
     catch(err)
     {
@@ -82,7 +90,7 @@ const CheckForEmail = async(email) =>
 {
     try{
         const {rows} = await pool.query(
-            `SELECT * FROM users WHERE email = $1`,
+            `SELECT * FROM users WHERE userEmail = $1`,
             [email]
         )
         const user = rows[0];
@@ -90,7 +98,7 @@ const CheckForEmail = async(email) =>
         {
             return null;
         }
-    
+        
         return user;
     }
     catch(err)
@@ -102,4 +110,16 @@ const CheckForEmail = async(email) =>
 module.exports = {
     Login,
     Register
+}
+
+const CreateJWT = async (user) => {
+    return jwt.sign({
+        userId: user.userid,
+        name: user.username
+    },
+    process.env.JWT_SECRET,
+    {
+        expiresIn: process.env.JWT_LIFETIME
+    }
+    )
 }
