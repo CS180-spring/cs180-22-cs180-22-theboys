@@ -6,7 +6,8 @@ import '../Styles/textStyles.css'
 
 
 export default function  ProductDisplayCard({itemTitle, itemPrice, itemImage})
-{
+{   
+    console.log(itemImage)
     return (
     
         <div className='neomorphic-card'>
