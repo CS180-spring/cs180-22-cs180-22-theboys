@@ -8,9 +8,10 @@ import '../Styles/GridStyles.css'
 import '../Hooks/useGetCards.js'
 import '../Styles/ProductViewPageStyles.css'
 
-export default function ProductViewPage({}) {
-    let products =  useGetCards();
-    return (
+export default function ProductViewPage() {
+  let products = useGetCards();  
+  
+  return (
       <div>
       <ProductViewLabel/>
       <ProductFilterHeader/>

@@ -19,9 +19,10 @@ export default function useGetCards()
         'QmcLtC8ZEX5HvB6nCEPqFHCta9fQjpcqj5c7QRo41E9Xwb.png'
     ]
 
+    
 
-    let productCards = files.map((item, index) => {
-        const itemImage = `${process.env.PUBLIC_URL}/Images/Bored Apes/${item}`;
+    const productCards = files.map((item, index) => {
+        const itemImage = `${process.env.PUBLIC_URL}Images/BoredApes/${item}`;
         return (
             <ProductDisplayCard 
                 key={index}

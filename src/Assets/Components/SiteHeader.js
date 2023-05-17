@@ -3,6 +3,7 @@ import ProductSearchBar from '../Components/ProductSearchBar';
 import ProductCart from '../Components/ProductCart';
 import '../Styles/textStyles.css'
 import '../Styles/SiteHeaderStyles.css'
+import '../Styles/SiteFooterStyles.css'
 
 export default function SiteHeader({})
 {
@@ -35,6 +36,7 @@ export default function SiteHeader({})
                     <div className="title-text">{"Contact"}</div>
                 </div>
             </div>
+            <div className="footer-divider-bar"></div>
         </div>
     )
 }

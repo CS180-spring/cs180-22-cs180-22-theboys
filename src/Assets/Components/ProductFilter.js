@@ -23,7 +23,7 @@ const CascadingDropdown = () => {
     }
 
     return (
-        <form classname = "FilterDropdown">
+        <form className = "FilterDropdown">
             <div>
             <select value={selectedCountry} onChange={handleCountryChange}>
                 <option value="">Price</option>
