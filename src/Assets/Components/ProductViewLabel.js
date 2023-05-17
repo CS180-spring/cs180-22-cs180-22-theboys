@@ -1,8 +1,10 @@
 import React from "react";
+import '../Styles/textStyles.css'
+
 
 export default function ProductViewLabel({})
 {    
     return(
-        <div className='title' style={{fontSize:"1.5em"}}>New Arrivals</div>
+        <div className='title-text' style={{fontSize:"1.5em"}}>New Arrivals</div>
     )
 }
