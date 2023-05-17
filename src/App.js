@@ -11,6 +11,7 @@ import './Assets/Styles/GridStyles.css'
 
 import './Assets/Hooks/useGetCards.js'
 import SiteHeader from './Assets/Components/SiteHeader';
+import ProductViewPage from './Assets/Components/ProductViewPage';
 
 
 
@@ -19,8 +20,8 @@ function App() {
 
   return (
     <div>
-    <SiteHeader/>
-    {/*<ProductGrid products={products}/>*/}
+      <SiteHeader/>
+      {/*<ProductGrid products={products}/>*/}
     </div>
   );
 }

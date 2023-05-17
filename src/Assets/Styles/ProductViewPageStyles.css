@@ -1,0 +1,21 @@
+.product-viewpage-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    width: 100%;
+  }
+
+.FilterDropdown{
+    display: flex;
+    width: 100px;
+    flex-direction: column;
+    position: relative;
+}
+
+.FilterDropdown > * {
+    position: absolute
+}
+  
+  .flex-item {
+    flex: 1;  
+  }
