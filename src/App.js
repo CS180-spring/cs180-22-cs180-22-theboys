@@ -11,6 +11,7 @@ import './Assets/Styles/GridStyles.css'
 
 import './Assets/Hooks/useGetCards.js'
 import SiteHeader from './Assets/Components/SiteHeader';
+import SiteFooter from './Assets/Components/SiteFooter';
 
 
 
@@ -21,6 +22,8 @@ function App() {
     <div>
     <SiteHeader/>
     {/*<ProductGrid products={products}/>*/}
+    
+    <SiteFooter />
     </div>
   );
 }
