@@ -2,14 +2,21 @@ import React from "react";
 import '../Styles/textStyles.css'
 import '../Styles/ProductFilterHeader.css'
 import SortByDropdown from './SortByDropdown.js'
+import Select from "./Select";
 
 export default function ProductFilterHeader({})
 {
     
     return(
         <div className="product-filter-header">
-            <div className="filter-by">Filter By:</div>
-            <div className = "sort-by-group"><SortByDropdown/></div>
+            <div className="title-text">{'Filter By:'}</div>
+            <Select options = {[
+                'A-Z',
+                'Price (High-Low)',
+                'Price (Low-High)',
+                'Latest',
+                'Most Popular'
+            ]}/>
         </div>
     )
 }

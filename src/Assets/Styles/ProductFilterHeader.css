@@ -1,29 +1,19 @@
 .product-filter-header{
-    margin-left: 5px;
-    color: rgba(0,0,0,0);
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 500;
-    font-size: 0.8em;
-    
-
-    text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.15);
-
-    background-image: linear-gradient(white, rgb(160, 160, 160));
-    background-clip: text;
-    background-repeat: no-repeat;
-    background-size: contain;
-
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-content: center;
-    width:90%;
+    width:85%;
     height:80px;
+    margin-top: 20px;
 }
 
-.filter-by{
-    align-content: left;
+.product-filter-header > .title-text{
+    font-size: 1.1em;
+    margin-left: 10px;
 }
+
+
 
 .sort-by-group{
     align-content:right;
