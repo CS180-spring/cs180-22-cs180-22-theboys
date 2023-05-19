@@ -31,7 +31,7 @@ export default function Select({options})
             let containsPos = false;
             for(let i = 0; i < ref.current.length; i++)
             {
-                if(ref.current[i].contains(e.target))
+                if(ref.current[i] !== null && ref.current[i].contains(e.target))
                 {
                     containsPos = true;
                     break;

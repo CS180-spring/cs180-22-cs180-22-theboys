@@ -11,12 +11,18 @@ import SiteHeader from './Assets/Components/SiteHeader';
 import ProductViewPage from './Assets/Components/ProductViewPage.js'
 import SiteFooter from './Assets/Components/SiteFooter';
 import Homepage from './Assets/Components/HomePage';
+import {Route, Routes, BrowserRouter as Router} from 'react-router-dom'
 
 function App() {
   return (
-    <div>
-      <Homepage />
-    </div>
+    <Router>
+      <Routes>
+        <Route exact path = '/' element = {<Homepage />}></Route>
+        <Route exact path = '/shop' element = {<ProductViewPage />}></Route>
+      </Routes>
+    </Router>
+    
+    
   );
 }
 

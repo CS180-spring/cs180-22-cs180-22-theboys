@@ -1,13 +1,16 @@
 import React from "react";
 import ProductSearchBar from '../Components/ProductSearchBar';
 import ProductCart from '../Components/ProductCart';
+import { useNavigate } from "react-router-dom";
+
 import '../Styles/textStyles.css'
 import '../Styles/SiteHeaderStyles.css'
 import '../Styles/SiteFooterStyles.css'
 
 export default function SiteHeader({})
 {
-    
+    const navigate = useNavigate();
+
     return(
         <div>
             <div className="site-header">
@@ -21,10 +24,17 @@ export default function SiteHeader({})
             <div className="footer-divider-bar"></div>
             <div className="navigation-menu">
                 <div className="navigation-menu-item">
-                    <div className="title-text">{"Home"}</div>
+                    <div 
+                        className="title-text"
+                        onClick = {()=> {navigate('/')}}    
+                    >
+                    {"Home"}</div>
                 </div>
                 <div className="navigation-menu-item">
-                    <div className="title-text">{"Shop"}</div>
+                    <div 
+                        className="title-text"
+                        onClick = {()=> {navigate('/shop')}}
+                    >{"Shop"}</div>
                 </div>
                 <div className="navigation-menu-item">
                     <div className="title-text">{"News & Events"}</div>
