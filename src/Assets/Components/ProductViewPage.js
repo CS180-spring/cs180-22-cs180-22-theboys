@@ -12,7 +12,7 @@ import SiteFooter from "./SiteFooter.js";
 
 export default function ProductViewPage() {
   let products = useGetCards();  
-  
+  window.scrollTo({top: 0, left: 0, behavior: "instant"})
   return (
       <div>
       <SiteHeader />

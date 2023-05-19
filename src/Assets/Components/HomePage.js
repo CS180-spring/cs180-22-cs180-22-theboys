@@ -9,6 +9,8 @@ import OurStory from "./OurStory";
 
 export default function Homepage()
 {
+    window.scrollTo({top: 0, left: 0, behavior: "instant"})
+
     const files = [
         'QmabwwMDTAvKNvcapqWgnRDkMqXuMSkpK5Q8oopMhT7wAU.png',
         'QmadJd1GgsSgXn7RtrcL8FePionDyf4eQEsREcvdqh6eQe.png',
