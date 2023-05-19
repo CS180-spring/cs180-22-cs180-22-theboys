@@ -6,7 +6,7 @@ export default function Carousel({carouselContents})
 {
     const [currentIndex, setCurrentIndex] = React.useState(0);
 
-    const carouselItems = [0,1,2,3,4,5,6,7,8,9].map((current, i) => {
+    const carouselItems = carouselContents.map((current, i) => {
         return (
             <div 
                 className="carousel-item"
@@ -14,7 +14,9 @@ export default function Carousel({carouselContents})
                 style= {{
                     transform: `translate(${-220 * currentIndex}px)`
                 }}
-            ></div>
+            >
+                {current}
+            </div>
         )
     })
 
