@@ -4,6 +4,8 @@ import SiteFooter from "./SiteFooter";
 import Carousel from "./Carousel";
 import '../Styles/textStyles.css'
 import CarouselProductCard from "./CarouselProductCard";
+import HomepageHero from "./HomepageHero";
+import OurStory from "./OurStory";
 
 export default function Homepage()
 {
@@ -39,6 +41,11 @@ export default function Homepage()
     return(
         <div>
             <SiteHeader />
+
+            <HomepageHero 
+                imageUrl = {`${process.env.PUBLIC_URL}/Images/Monke.png`}
+                title={"Our Favorite Brands"}
+            />
             <div>
                 <div 
                     className="title-text"
@@ -48,6 +55,23 @@ export default function Homepage()
                 >{"New Arrivals"}</div>
                 <Carousel carouselContents={carouselContents}/>
             </div>
+
+            <HomepageHero 
+                imageUrl = {`${process.env.PUBLIC_URL}/Images/Monke2.png`}
+                title={"Best Sellers"}
+            />
+
+            <div>
+                <div 
+                    className="title-text"
+                    style = {{
+                        fontSize : '1.3em'
+                    }}
+                >{"Recommended For You"}</div>
+                <Carousel carouselContents={carouselContents}/>
+            </div>
+
+            <OurStory />
             <SiteFooter />
         </div>
     )
