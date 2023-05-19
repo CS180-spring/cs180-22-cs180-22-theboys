@@ -10,14 +10,12 @@ import SiteHeader from './Assets/Components/SiteHeader';
 
 import ProductViewPage from './Assets/Components/ProductViewPage.js'
 import SiteFooter from './Assets/Components/SiteFooter';
+import Homepage from './Assets/Components/HomePage';
 
 function App() {
   return (
     <div>
-    <SiteHeader/>
-  
-    <ProductViewPage />
-    <SiteFooter />
+      <Homepage />
     </div>
   );
 }

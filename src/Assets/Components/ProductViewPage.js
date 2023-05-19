@@ -7,18 +7,22 @@ import ProductFilter from './ProductFilter.js'
 import '../Styles/GridStyles.css'
 import '../Hooks/useGetCards.js'
 import '../Styles/ProductViewPageStyles.css'
+import SiteHeader from "./SiteHeader.js";
+import SiteFooter from "./SiteFooter.js";
 
 export default function ProductViewPage() {
   let products = useGetCards();  
   
   return (
       <div>
+      <SiteHeader />
       <ProductViewLabel/>
       <ProductFilterHeader/>
         <div className="product-viewpage-body">
           <ProductFilter/>
           <ProductGrid products={products}/>
         </div>
+        <SiteFooter />
       </div>
     );
   }
