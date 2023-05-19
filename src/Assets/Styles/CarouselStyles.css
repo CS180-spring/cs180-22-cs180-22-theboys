@@ -38,6 +38,8 @@
     width: 25px;
     height: 25px;
     margin: 5px;
+    transition: all 0.5 ease;
+    transform: scale(1);
     filter: brightness(0.6);
 }
 

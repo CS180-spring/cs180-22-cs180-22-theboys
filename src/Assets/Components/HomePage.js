@@ -21,12 +21,13 @@ export default function Homepage()
     ]
 
     const sellers = [
-        'Zach', 'Cote', 'Paul'
+        'Ape Industries', 'Apechella', 'GuccApe'
     ]
 
     const carouselContents = files.map((current, i) => {
         return (
             <CarouselProductCard 
+                key = {i}
                 sellerName={sellers[Math.floor(Math.random() * sellers.length)]}
                 imageUrl={`${process.env.PUBLIC_URL}/Images/BoredApes/${current}`}
                 price={`$${Math.floor(Math.random() * 500)}`}
