@@ -14,7 +14,7 @@ export default function SiteHeader({})
                 <ProductSearchBar/>
                 <div className='title-text' style={{fontSize:"2em"}}>Bored Ape Escape</div>
                 <div className="cart-group">
-                <div className="title-text"onClick={()=>{console.log("sign in")}}>Sign In</div>
+                    <div className="title-text"onClick={()=>{console.log("sign in")}}>Sign In</div>
                     <ProductCart/>
                 </div>
             </div>
