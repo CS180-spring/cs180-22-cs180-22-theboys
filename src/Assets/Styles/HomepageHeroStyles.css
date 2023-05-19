@@ -16,13 +16,17 @@
 .homepage-hero-title{
     position: absolute;
     width: 33%;
-    left: 33%;
+    left: calc(33% - 5px);
     height: 50px;
     bottom: 25px;
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: rgba(0,0,0,0.3);
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255,255,255,0.4);
+    padding: 5px;
     
 }
 
@@ -34,12 +38,14 @@
 .homepage-hero-title > .title-text:nth-child(2)
 {
     cursor: pointer;
-    text-decoration: underline;
-    animation-name: pulse;
+    text-decoration: underline;animation-name: pulse;
     animation-timing-function: ease-in-out;
     animation-duration: 2s;
     animation-iteration-count: infinite;
     animation-fill-mode: forwards;
+    border-bottom: 1px solid rgba(220,220,220,1);
+    width: 75px;
+
 }
 
 
