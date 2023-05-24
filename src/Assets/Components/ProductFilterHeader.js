@@ -10,13 +10,15 @@ export default function ProductFilterHeader({})
     return(
         <div className="product-filter-header">
             <div className="title-text">{'Filter By:'}</div>
-            <Select options = {[
-                'A-Z',
-                'Price (High-Low)',
-                'Price (Low-High)',
-                'Latest',
-                'Most Popular'
-            ]}/>
+            <Select 
+                options = {[
+                    'A-Z',
+                    'Price (High-Low)',
+                    'Price (Low-High)',
+                    'Latest',
+                    'Most Popular'
+                ]}
+            />
         </div>
     )
 }

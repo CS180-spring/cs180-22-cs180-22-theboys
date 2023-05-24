@@ -3,7 +3,7 @@ import React from "react";
 import '../Styles/SelectStyles.css'
 
 //Custom select form
-export default function Select({options})
+export default function Select({options, style})
 {
     const [focused, setFocused] = React.useState(false)
     const [currentSelection, setCurrentSelection] = React.useState("Sort By")
@@ -54,7 +54,7 @@ export default function Select({options})
 
 
     return(
-        <div>
+        <div style = {style}>
             <div 
                 className="selection-box"
                 onClick={()=>{setFocused(prev => !prev)}}
@@ -70,7 +70,7 @@ export default function Select({options})
                 className="selection-dropdown"
                 style = {{
                     display : focused ? '' : 'none',
-                    pointerEvents: focused ? '' : 'none'
+                    pointerEvents: focused ? '' : 'none',
                 }}    
             >
                 {optionsDivs}
