@@ -15,7 +15,7 @@ export default function  ProductDisplayCard({itemTitle, itemPrice, itemImage})
         <div className='image-display'>
         <img 
            src={ `${itemImage}`}/>
-        </div>
+        </div> 
 
         <div 
           className='title-text'
