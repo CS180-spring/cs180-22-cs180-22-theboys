@@ -3,10 +3,10 @@ import React from "react";
 import '../Styles/SelectStyles.css'
 
 //Custom select form
-export default function Select({options, style})
+export default function Select({options, initialText, style})
 {
     const [focused, setFocused] = React.useState(false)
-    const [currentSelection, setCurrentSelection] = React.useState("Sort By")
+    const [currentSelection, setCurrentSelection] = React.useState(initialText ? initialText : "Sort By")
     
     const optionsDivs = options.map((current, index) => {
         return (

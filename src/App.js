@@ -12,6 +12,7 @@ import ProductViewPage from './Assets/Components/ProductViewPage.js'
 import SiteFooter from './Assets/Components/SiteFooter';
 import Homepage from './Assets/Components/HomePage';
 import {Route, Routes, BrowserRouter as Router} from 'react-router-dom'
+import SingleProductPage from './Assets/Components/SingleProductPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route exact path = '/' element = {<Homepage />}></Route>
         <Route exact path = '/shop' element = {<ProductViewPage />}></Route>
+        <Route exact path = '/singleproduct' element = {<SingleProductPage />}></Route>
       </Routes>
     </Router>
     

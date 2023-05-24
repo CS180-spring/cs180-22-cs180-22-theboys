@@ -3,13 +3,14 @@ import NeoMorphicIcon from "./NeoMorphicIcon";
 
 import '../Styles/neomorphicStyles.css'
 import '../Styles/textStyles.css'
-
+import { useNavigate } from "react-router-dom";
 
 export default function  ProductDisplayCard({itemTitle, itemPrice, itemImage})
 {   
+      const navigate = useNavigate();
       return (
     
-        <div className='neomorphic-card'>
+        <div className='neomorphic-card' onClick={()=>{navigate("/singleproduct")}}>
        
         <div className='image-display'>
         <img 

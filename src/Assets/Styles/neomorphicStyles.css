@@ -184,7 +184,7 @@ body{
 
 .neomorphic-card{
     box-sizing: border-box;
-
+    cursor:pointer;
     aspect-ratio: 4 / 6;
     position: relative;
     left: 0%;
