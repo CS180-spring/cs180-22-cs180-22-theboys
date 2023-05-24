@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import ProductViewPage from "./ProductViewPage";
 import "../Styles/ProductViewPageStyles.css";
+import DropDownMenu from './DropdownMenu';
+import PriceFilter from './PriceFilter';
 
 const CascadingDropdown = () => {
     const [selectedCountry, setSelectedCountry] = useState('');
@@ -46,4 +48,14 @@ const CascadingDropdown = () => {
     );
 }
 
-export default CascadingDropdown;
+function ProductFilter({filters, setFilters})
+{
+    return(
+        <div className='product-filter'>
+            <DropDownMenu dropDownText={"Price"} menu={<PriceFilter />}/>
+
+        </div>
+    )
+}
+
+export default ProductFilter;

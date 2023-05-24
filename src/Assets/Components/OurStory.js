@@ -21,7 +21,7 @@ export default function OurStory()
 
                 <div className="basic-text">
                     {
-                        "After the complete collapse of the United States Dollar in the great economic crisis of 2040, NFTs"
+                        "After the complete collapse of the United States Dollar in the great economic crisis of 2040, NFTs "
                     +   "exploded in popularity, and everyone wanted one! So, the founders transformed their NFT shop into a hub "
                     +   "for NFT investors of all stripes, and became integral to their community. Bored Ape Escape continues to offer "
                     +   "high quality NFTs at a price that everyone can afford."
