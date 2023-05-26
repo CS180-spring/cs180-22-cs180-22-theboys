@@ -7,7 +7,12 @@ export default function CarouselProductCard({imageUrl, productName, price, selle
 {
     const navigate = useNavigate();
     return(
-        <div className="carousel-product-card" onClick={()=>{navigate("/singleproduct")}}>
+        <div 
+            className="carousel-product-card" 
+            onClick={()=>{
+                navigate("/singleproduct"); 
+                window.scrollTo({top: 0, left: 0, behavior: "instant"})
+            }}>
             <img src={imageUrl} />
             <div className="title-text">{productName}</div>
             <div className="basic-text">{sellerName}</div>
