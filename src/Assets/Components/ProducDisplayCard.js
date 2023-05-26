@@ -5,16 +5,38 @@ import '../Styles/neomorphicStyles.css'
 import '../Styles/textStyles.css'
 import { useNavigate } from "react-router-dom";
 
-export default function  ProductDisplayCard({itemTitle, itemPrice, itemImage})
-{   
+export default function ProductDisplayCard({product})
+{     
+    const {
+      productname, 
+      productimageurl, 
+      productprice, 
+      productquantityavailable, 
+      productdescription, 
+      productisonsale, 
+      productsaleprice,
+      productseller
+    } = product;
+
+      console.log(JSON.stringify(product))
       const navigate = useNavigate();
       return (
     
-        <div className='neomorphic-card' onClick={()=>{navigate("/singleproduct")}}>
+        <div className='neomorphic-card' onClick={()=>{
+          navigate(
+            {
+              pathname: "/singleproduct",
+              search: `itemId=${product.productid}`
+            }, 
+            {
+              state: {product : product}
+            }
+          )}}
+        >
        
         <div className='image-display'>
         <img 
-           src={ `${itemImage}`}/>
+           src={`${process.env.PUBLIC_URL}${productimageurl}`}/>
         </div>
 
         <div 
@@ -25,7 +47,7 @@ export default function  ProductDisplayCard({itemTitle, itemPrice, itemImage})
             marginTop: '10px',
             alignSelf: 'flex-start'
           }}
-        >{itemTitle}</div>
+        >{product.productname}</div>
         
         <div 
           className='title-text'
@@ -36,7 +58,7 @@ export default function  ProductDisplayCard({itemTitle, itemPrice, itemImage})
             marginTop: '10px',
             marginBottom: 'auto'
           }}
-        >{`$${itemPrice}`}</div>
+        >{`$${product.productprice}`}</div>
         <NeoMorphicIcon 
           iconFilepath={`Images/shopping-cart` } 
           style = {{

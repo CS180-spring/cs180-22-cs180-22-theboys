@@ -7,14 +7,13 @@ export default function useGetCards()
     const {products, setProducts} = React.useContext(ProductsContext);
     
     const entries = products.products;
+    
     const productCards = entries.map((item, index) => {
         const itemImage = `${process.env.PUBLIC_URL}${item.productimageurl}`;
         return (
             <ProductDisplayCard 
-                key={index}
-                itemTitle={item.productname}
-                itemPrice={item.productprice}
-                itemImage={itemImage}
+                key = {index}
+                product = {item}
             />
         )
     })
