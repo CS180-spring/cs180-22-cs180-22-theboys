@@ -14,10 +14,11 @@ const queries = [
     `CREATE TABLE IF NOT EXISTS "products" (
 	    productId uuid DEFAULT uuid_generate_v4 (),
 	    productName VARCHAR(100) NOT NULL, 
+        productSeller VARCHAR(100) NOT NULL,
         productImageUrl VARCHAR(100) NOT NULL, 
         productPrice VARCHAR(100) NOT NULL, 
         productQuantityAvailable VARCHAR(100) NOT NULL, 
-        productDescription VARCHAR(100) NOT NULL, 
+        productDescription VARCHAR(500) NOT NULL, 
         productIsOnSale VARCHAR(100) NOT NULL, 
         productSalePrice VARCHAR(100) NOT NULL,
 	    PRIMARY KEY (productId)

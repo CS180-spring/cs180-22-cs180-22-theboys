@@ -41,7 +41,8 @@ const CreateProduct = async (req, res)=> {
         productQuantityAvailable, 
         productDescription, 
         productIsOnSale, 
-        productSalePrice
+        productSalePrice,
+        productSeller
     } = req.body; 
 
     try{
@@ -53,7 +54,8 @@ const CreateProduct = async (req, res)=> {
                 productQuantityAvailable, 
                 productDescription, 
                 productIsOnSale, 
-                productSalePrice
+                productSalePrice,
+                productSeller
             )
             VALUES (
                 $1, 
@@ -62,7 +64,8 @@ const CreateProduct = async (req, res)=> {
                 $4, 
                 $5, 
                 $6, 
-                $7
+                $7,
+                $8
             ) RETURNING *`,
             [        
                 productName, 
@@ -71,7 +74,8 @@ const CreateProduct = async (req, res)=> {
                 productQuantityAvailable, 
                 productDescription, 
                 productIsOnSale, 
-                productSalePrice
+                productSalePrice,
+                productSeller
             ]);
         res.status(200).json(`Product added with id: ${results.rows[0].productid}`);
     }
@@ -91,7 +95,8 @@ const UpdateProduct = async (req, res)=> {
         productQuantityAvailable, 
         productDescription, 
         productIsOnSale, 
-        productSalePrice
+        productSalePrice,
+        productSeller
     } = req.body; 
     try{
         const results = await pool.query(
@@ -103,7 +108,8 @@ const UpdateProduct = async (req, res)=> {
                 productDescription = $5, 
                 productIsOnSale = $6, 
                 productSalePrice = $7
-                WHERE productId = $8
+                productSeller = $8
+                WHERE productId = $9
                 RETURNING *`,
             [ 
                 productName, 
@@ -113,6 +119,7 @@ const UpdateProduct = async (req, res)=> {
                 productDescription, 
                 productIsOnSale, 
                 productSalePrice,
+                productSeller,
                 id
             ]
         )

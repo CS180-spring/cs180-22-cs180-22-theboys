@@ -6,9 +6,12 @@ import '../Styles/textStyles.css'
 import CarouselProductCard from "./CarouselProductCard";
 import HomepageHero from "./HomepageHero";
 import OurStory from "./OurStory";
+import useGetProducts from "../Hooks/useGetProducts";
 
 export default function Homepage()
 {
+    const[fetchingProducts, setFetchingProducts] = useGetProducts();
+
     window.scrollTo({top: 0, left: 0, behavior: "instant"})
 
     const files = [
