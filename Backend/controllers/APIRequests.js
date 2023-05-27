@@ -8,6 +8,7 @@ const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
 
 const StripePurchase = async (req, res)=>{    //change this
     const query = req.query;
+    const productID = query ? req.query.productid : null;
     const productPrice = query ? req.query.productsaleprice : null; 
     var API_Response = {
         error: '',
@@ -20,10 +21,10 @@ const StripePurchase = async (req, res)=>{    //change this
             const session = await stripe.checkout.session.create({
                 payment_method_types: ['card'],
                 mode: 'payment',
+                //line_items: req.body.
                 success_url: '/ordersummary',
                 cancel_url: '/paymenterror'
             })
-
 
             request.get({
                 url: 'https://api.calorieninjas.com/v1/nutrition?query='+productName,
