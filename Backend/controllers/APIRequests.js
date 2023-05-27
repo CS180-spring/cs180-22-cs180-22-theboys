@@ -28,10 +28,12 @@ const StripePurchase = async (req, res)=>{    //change this
                         price_data:{
                             currency: 'usd',
                             product_data: {
-                                name: productName
+                                name: productName,
+                            
                             },
                             unit_amount: productPrice * 100
-                        }
+                        },
+                        quantity: 1
                        
                     }
                 },
