@@ -32,7 +32,7 @@ export default function SingleProductView({product}){
 
     return(
         <div>
-            <div className="productColumns">
+            <div className="twoColumns">
                 <div><img className="productColumnMainImage" src = {`${process.env.PUBLIC_URL}${productimageurl}`}/></div>
                 <div>
                     <div style={{marginBottom:"0"}}className="title-text">{productseller}</div>

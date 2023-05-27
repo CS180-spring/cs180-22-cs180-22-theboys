@@ -15,7 +15,7 @@ export default function SiteHeader({})
         <div>
             <div className="site-header">
                 <ProductSearchBar/>
-                <div className='title-text' style={{fontSize:"2em"}}>Bored Ape Escape</div>
+                <div className='title-text'>Bored Ape Escape</div>
                 <div className="cart-group">
                     <div className="title-text"onClick={()=>{console.log("sign in")}}>Sign In</div>
                     <ProductCart/>
@@ -36,10 +36,13 @@ export default function SiteHeader({})
                         onClick = {()=> {navigate('/shop')}}
                     >{"Shop"}</div>
                 </div>
-                <div className="navigation-menu-item">
+                {/* <div className="navigation-menu-item">
                     <div className="title-text">{"News & Events"}</div>
-                </div>
-                <div className="navigation-menu-item">
+                </div>*/}
+                <div 
+                    className="navigation-menu-item"
+                    onClick = {()=> {navigate('/about')}}
+                >
                     <div className="title-text">{"About"}</div>
                 </div>
                 <div className="navigation-menu-item">

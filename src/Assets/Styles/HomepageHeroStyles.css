@@ -33,7 +33,7 @@
 
 .homepage-hero-title > .title-text:nth-child(1)
 {
-    font-size: 1.5rem;
+    font-size: 2.25vw;
 }
 
 .homepage-hero-title > .title-text:nth-child(2)
@@ -45,8 +45,8 @@
     animation-iteration-count: infinite;
     animation-fill-mode: forwards;
     border-bottom: 1px solid rgba(220,220,220,1);
-    width: 75px;
-
+    width: 33%;
+    font-size: 1vw;
 }
 
 
@@ -70,4 +70,23 @@
     margin-top: 40px;
     width: 100%;
     left: 0px;
+}
+
+@media only screen and (max-width: 640px) {
+    .homepage-hero-title
+    {
+        width: 50%;
+        left: 25%;
+        height: 40px;
+    }
+    .homepage-hero-title > .title-text:nth-child(1)
+    {
+        font-size: 3vw;
+    }
+
+    .homepage-hero-title > .title-text:nth-child(2)
+    {
+        width: 30%;
+        font-size: 1.75vw;
+    }
 }
