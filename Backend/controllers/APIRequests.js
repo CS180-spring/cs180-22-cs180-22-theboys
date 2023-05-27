@@ -6,21 +6,29 @@ const request = require('request')
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
 
 
-const ProductSearch = async (req, res)=>{    //change this
+const StripePurchase = async (req, res)=>{    //change this
     const query = req.query;
-    const productName = query ? req.query.productName : null; //foodName
+    const productPrice = query ? req.query.productsaleprice : null; 
     var API_Response = {
         error: '',
         payload: {}
     };
 
-    if(productName)
+    if(productPrice)
     {
         try{
+            const session = await stripe.checkout.session.create({
+                payment_method_types: ['card'],
+                mode: 'payment',
+                success_url: '/ordersummary',
+                cancel_url: '/paymenterror'
+            })
+
+
             request.get({
                 url: 'https://api.calorieninjas.com/v1/nutrition?query='+productName,
                 headers : {
-                    'X-Api-Key' : process.env.CALORIE_NINJAS_API_KEY
+                 'X-Api-Key' : process.env.CALORIE_NINJAS_API_KEY
                 }
             }, (error, response, body) => {
                 if(error)
@@ -124,6 +132,6 @@ const ExerciseSearch = async (req, res)=>{
 }
 
 module.exports = {
-    ProductSearch
+    StripePurchase
     //ExerciseSearch
 }
