@@ -31,14 +31,14 @@ const StripePurchase = async (req, res)=>{
                                 name: productName,
                             
                             },
-                            unit_amount: productPrice * 100
+                            unit_amount: productPrice * 100 //needs to be in pennies for stripe to function
                         },
                         quantity: 1  //hardcoded value for quantity for testing
                        
                     }
                 },
-                success_url: '/ordersummary',
-                cancel_url: '/paymenterror'
+                success_url: '/ordersummary', //success pagge for completing order
+                cancel_url: '/paymenterror'   //page when error occurs
             })
 
         }catch(err)
