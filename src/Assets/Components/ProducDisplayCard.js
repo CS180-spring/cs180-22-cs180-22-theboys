@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function ProductDisplayCard({product})
 {     
+
     const {
       productname, 
       productimageurl, 
@@ -22,8 +23,10 @@ export default function ProductDisplayCard({product})
       const navigate = useNavigate();
       return (
     
-        <div className='neomorphic-card' onClick={()=>{
-          navigate(
+        <div 
+          className='neomorphic-card' 
+          onClick={()=>{
+            navigate(
             {
               pathname: "/singleproduct",
               search: `itemId=${product.productid}`

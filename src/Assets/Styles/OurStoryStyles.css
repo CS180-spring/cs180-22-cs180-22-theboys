@@ -65,3 +65,31 @@
     border-radius: 10px;
 }
 
+
+@media only screen and (max-width: 800px) {
+    .our-story{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        width: 70%;
+        left: 15%;
+        margin-top: 50px;
+    }
+    
+    .our-story > *{
+        margin: 5px;
+        width: 100%;
+    }
+
+    .our-story> img{
+        order: 0;
+        width: 100%;
+    }
+
+    .our-story-left{
+        order: 1;
+    }
+    
+}

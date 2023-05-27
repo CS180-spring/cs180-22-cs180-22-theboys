@@ -9,7 +9,10 @@ import ProductViewPage from './Assets/Components/ProductViewPage.js'
 import Homepage from './Assets/Components/HomePage';
 import {Route, Routes, BrowserRouter as Router} from 'react-router-dom'
 import SingleProductPage from './Assets/Components/SingleProductPage';
+import AboutPage from './Assets/Components/AboutPage';
+
 import React from 'react';
+
 
 export const ProductsContext = React.createContext();
 
@@ -23,6 +26,7 @@ function App() {
           <Route exact path = '/' element = {<Homepage />}></Route>
           <Route exact path = '/shop' element = {<ProductViewPage />}></Route>
           <Route exact path = '/singleproduct' element = {<SingleProductPage />}></Route>
+          <Route exact path = '/about' element = {<AboutPage />}></Route>          
         </Routes>
       </Router>
     </ProductsContext.Provider>
