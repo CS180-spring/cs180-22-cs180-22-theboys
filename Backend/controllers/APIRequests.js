@@ -10,49 +10,35 @@ const StripePurchase = async (req, res)=>{    //change this
     const query = req.query;
     const productID = query ? req.query.productid : null;
     const productPrice = query ? req.query.productsaleprice : null; 
+    const productName = query ? req.query.productname : null;
+
     var API_Response = {
         error: '',
         payload: {}
     };
 
-    if(productPrice)
+    if(productID)
     {
         try{
             const session = await stripe.checkout.session.create({
                 payment_method_types: ['card'],
                 mode: 'payment',
-                //line_items: req.body.
+                line_items: productID =>{
+                    return{
+                        price_data:{
+                            currency: 'usd',
+                            product_data: {
+                                name: productName
+                            },
+                            unit_amount: productPrice * 100
+                        }
+                       
+                    }
+                },
                 success_url: '/ordersummary',
                 cancel_url: '/paymenterror'
             })
 
-            request.get({
-                url: 'https://api.calorieninjas.com/v1/nutrition?query='+productName,
-                headers : {
-                 'X-Api-Key' : process.env.CALORIE_NINJAS_API_KEY
-                }
-            }, (error, response, body) => {
-                if(error)
-                {
-                    API_Response = {
-                        error : "Something Went Wrong"
-                    }
-                    return res.status(400).json(API_Response);
-                }
-                else if(response.statusCode != 200)
-                {
-                    API_Response = {
-                        error : "Something Went Wrong"
-                    }
-                    return res.status(400).json(API_Response); 
-                }
-                else{
-                    API_Response = {
-                        payload: JSON.parse(response.body).items
-                    }
-                    return res.status(200).json(API_Response);
-                }
-            })
         }catch(err)
         {
             console.log(err);
