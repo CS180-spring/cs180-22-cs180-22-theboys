@@ -12,7 +12,7 @@ export default function Carousel({carouselContents})
                 className="carousel-item"
                 key = {i}
                 style= {{
-                    transform: `translate(${-220 * currentIndex}px)`
+                    transform: `translate(${-125 * currentIndex}%)`
                 }}
             >
                 {current}
