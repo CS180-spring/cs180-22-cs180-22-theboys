@@ -2,7 +2,7 @@ const express = require('express')
 const request = require('request')
 const {StatusCodes} = require('http-status-codes')
 
-const FoodSearch = async (req, res)=>{
+const FoodSearch = async (req, res)=>{    //change this
     const query = req.query;
     const foodName = query ? req.query.foodName : null;
     var API_Response = {
@@ -120,6 +120,6 @@ const ExerciseSearch = async (req, res)=>{
 }
 
 module.exports = {
-    FoodSearch,
-    ExerciseSearch
+    ProductSearch
+    //ExerciseSearch
 }
