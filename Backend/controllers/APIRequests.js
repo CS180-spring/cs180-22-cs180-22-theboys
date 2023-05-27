@@ -6,7 +6,7 @@ const request = require('request')
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
 
 
-const StripePurchase = async (req, res)=>{    //change this
+const StripePurchase = async (req, res)=>{  
     const query = req.query;
     const productID = query ? req.query.productid : null;
     const productPrice = query ? req.query.productsaleprice : null; 
@@ -33,7 +33,7 @@ const StripePurchase = async (req, res)=>{    //change this
                             },
                             unit_amount: productPrice * 100
                         },
-                        quantity: 1
+                        quantity: 1  //hardcoded value for quantity for testing
                        
                     }
                 },
@@ -61,5 +61,5 @@ const StripePurchase = async (req, res)=>{    //change this
 
 module.exports = {
     StripePurchase
-    //ExerciseSearch
+   
 }
