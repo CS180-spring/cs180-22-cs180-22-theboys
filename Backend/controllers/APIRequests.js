@@ -2,19 +2,19 @@ const express = require('express')
 const request = require('request')
 const {StatusCodes} = require('http-status-codes')
 
-const FoodSearch = async (req, res)=>{    //change this
+const ProductSearch = async (req, res)=>{    //change this
     const query = req.query;
-    const foodName = query ? req.query.foodName : null;
+    const productName = query ? req.query.productName : null; //foodName
     var API_Response = {
         error: '',
         payload: {}
     };
 
-    if(foodName)
+    if(productName)
     {
         try{
             request.get({
-                url: 'https://api.calorieninjas.com/v1/nutrition?query='+foodName,
+                url: 'https://api.calorieninjas.com/v1/nutrition?query='+productName,
                 headers : {
                     'X-Api-Key' : process.env.CALORIE_NINJAS_API_KEY
                 }
