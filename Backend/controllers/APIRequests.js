@@ -1,6 +1,10 @@
 const express = require('express')
 const request = require('request')
-const {StatusCodes} = require('http-status-codes')
+//const {StatusCodes} = require('http-status-codes')
+
+
+const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
+
 
 const ProductSearch = async (req, res)=>{    //change this
     const query = req.query;
