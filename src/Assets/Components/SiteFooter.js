@@ -15,10 +15,12 @@ export default function SiteFooter()
                     <div className="footer-column-bar"></div>
                     <div 
                         className="title-text"
+                        style = {{cursor: "pointer"}}
                         onClick={()=>{navigate('/about')}}    
                     >{"About"}</div>
                     <div 
                         className="title-text"
+                        style = {{cursor: "pointer"}}
                         onClick={()=>{navigate('/contact')}}    
                     >{"Contact"}</div>
                 </div>
