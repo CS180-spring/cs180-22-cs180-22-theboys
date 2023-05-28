@@ -1,8 +1,11 @@
 import React from "react";
 import '../Styles/SiteFooterStyles.css'
+import { useNavigate } from "react-router-dom";
 
 export default function SiteFooter()
 {
+    const navigate = useNavigate();
+
     return(
         <div className="site-footer">
             <div className="footer-divider-bar"></div>
@@ -10,10 +13,14 @@ export default function SiteFooter()
                 <div className="footer-column">
                     <div className="title-text" style={{textAlign: 'center'}}>{"CUSTOMER SERVICE"}</div>
                     <div className="footer-column-bar"></div>
-                    <div className="title-text">{"About"}</div>
-                    <div className="title-text">{"Contact"}</div>
-                    <div className="title-text">{"News & Events"}</div>
-                    <div className="title-text">{"Returns"}</div>
+                    <div 
+                        className="title-text"
+                        onClick={()=>{navigate('/about')}}    
+                    >{"About"}</div>
+                    <div 
+                        className="title-text"
+                        onClick={()=>{navigate('/contact')}}    
+                    >{"Contact"}</div>
                 </div>
 
                 <div className="footer-column">

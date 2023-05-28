@@ -12,6 +12,7 @@ import SingleProductPage from './Assets/Components/SingleProductPage';
 import AboutPage from './Assets/Components/AboutPage';
 
 import React from 'react';
+import ContactUsPage from './Assets/Components/ContactUsPage';
 
 
 export const ProductsContext = React.createContext();
@@ -26,7 +27,8 @@ function App() {
           <Route exact path = '/' element = {<Homepage />}></Route>
           <Route exact path = '/shop' element = {<ProductViewPage />}></Route>
           <Route exact path = '/singleproduct' element = {<SingleProductPage />}></Route>
-          <Route exact path = '/about' element = {<AboutPage />}></Route>          
+          <Route exact path = '/about' element = {<AboutPage />}></Route>        
+          <Route exact path = '/contact' element = {<ContactUsPage />}></Route>   
         </Routes>
       </Router>
     </ProductsContext.Provider>
