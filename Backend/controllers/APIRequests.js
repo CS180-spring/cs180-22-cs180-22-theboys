@@ -7,59 +7,51 @@ const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
 
 
 const StripePurchase = async (req, res)=>{  
-    const query = req.query;
-    const productID = query ? req.query.productid : null;
-    const productPrice = query ? req.query.productsaleprice : null; 
-    const productName = query ? req.query.productname : null;
-
     var API_Response = {
         error: '',
         payload: {}
     };
 
-    if(productID)
+    const items = req.body.items;
+    if(!items)
     {
+        return res.status(400).send('No items found in request body.');
+    }
+    
         try{
-            const session = await stripe.checkout.session.create({
+            const session = await stripe.checkout.sessions.create({
                 payment_method_types: ['card'],
                 mode: 'payment',
-                line_items: productID =>{
-                    return{
+                line_items: items.map(item =>{
+                    return({
                         price_data:{
                             currency: 'usd',
                             product_data: {
-                                name: productName,
+                                name: item.productName,
                             
                             },
-                            unit_amount: productPrice * 100 //needs to be in pennies for stripe to function
+                            unit_amount: item.productPrice * 100 //needs to be in pennies for stripe to function
                         },
-                        quantity: 1  //hardcoded value for quantity for testing
-                       
-                    }
-                },
-                success_url: '/ordersummary', //success pagge for completing order
-                cancel_url: '/paymenterror'   //page when error occurs
-            })
+                        quantity: 1  //hardcoded value for quantity for testing  
+                    })
+                }),
+                success_url: `${process.env.SERVER_URL}ordersummary`, //success pagge for completing order
+                cancel_url: `${process.env.SERVER_URL}paymenterror`  //page when error occurs
+                });
+            return res.status(200).json(session)
 
         }catch(err)
         {
-            console.log(err);
             API_Response = {
-                error : "No Query Provided"
+                error: err.message,
+                payload: {}
             }
             return res.status(400).json(API_Response); 
         }
        
-    }
-    else{
-        API_Response = {
-            error : "No Query Provided"
-        }
-        return res.status(400).json(API_Response); 
-    }
 }
+
 
 module.exports = {
     StripePurchase
-   
 }

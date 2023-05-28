@@ -46,7 +46,10 @@ export default function SiteHeader({})
                     <div className="title-text">{"About"}</div>
                 </div>
                 <div className="navigation-menu-item">
-                    <div className="title-text">{"Contact"}</div>
+                    <div 
+                        className="title-text"
+                        onClick = {()=> {navigate('/contact')}}
+                    >{"Contact"}</div>
                 </div>
             </div>
             <div className="footer-divider-bar"></div>
