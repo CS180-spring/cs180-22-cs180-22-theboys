@@ -39,7 +39,7 @@ export default function ProductDisplayCard({product})
        
         <div className='image-display'>
         <img 
-           src={ `${itemImage}`}/>
+           src={ `${process.env.PUBLIC_URL}${productimageurl}`}/>
         </div> 
 
         <div 
