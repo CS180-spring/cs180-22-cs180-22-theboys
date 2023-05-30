@@ -50,6 +50,22 @@ const Register = async(req, res)=> {
     {
         throw new Error("Please provide a username, email, and password");
     }
+
+
+    let validEmail = true;
+    if( /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(userEmail))
+    {
+        validEmail = true;
+    }
+    else{
+        validEmail = false;
+    }
+
+    if(!validEmail)
+    {
+        return res.status(StatusCodes.UNAUTHORIZED).json({msg: "Please provide a valid email"});
+    }
+    
     let user  = await CheckForEmail(userEmail);
     if(user)
     {
@@ -73,6 +89,53 @@ const Register = async(req, res)=> {
             $4
         ) RETURNING *`,
         [userName, hashedPassword, userEmail, false])
+
+        user = result.rows[0];
+        const token = await CreateJWT(user);
+        user.token = token;
+        res.status(200).json(user);
+    }
+    catch(err)
+    {
+        throw err;
+    }    
+}
+
+const CreateTempUser = async(req, res)=>{
+    const tempBody = {
+        userEmail: "temp",
+        userName: "temp",
+        userPassword: "temp"
+    }
+    
+    const {
+        userEmail, 
+        userName, 
+        userPassword
+    } = tempBody;
+
+    if(!userEmail || !userName || !userPassword)
+    {
+        throw new Error("Something went wrong.");
+    }
+
+    //Generate the salt and hash the password before storing
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(userPassword, salt);
+    try{
+        const result = await pool.query(`INSERT INTO users (
+            userName,
+            userPassword,
+            userEmail,
+            userIsTempUser
+        )
+        VALUES (
+            $1,
+            $2,
+            $3,
+            $4
+        ) RETURNING *`,
+        [userName, hashedPassword, userEmail, true])
 
         user = result.rows[0];
         const token = await CreateJWT(user);
@@ -109,7 +172,8 @@ const CheckForEmail = async(email) =>
 
 module.exports = {
     Login,
-    Register
+    Register,
+    CreateTempUser
 }
 
 const CreateJWT = async (user) => {

@@ -7,8 +7,15 @@ import '../Styles/textStyles.css'
 import '../Styles/SiteHeaderStyles.css'
 import '../Styles/SiteFooterStyles.css'
 
+import { CartContext } from "../../App";
+import useGetCart from "../Hooks/useGetCart";
+
 export default function SiteHeader({})
 {
+    const {cart, setCart} = React.useContext(CartContext);
+    const [fetchingCart, setFetchingCart] = useGetCart();
+
+
     const navigate = useNavigate();
 
     return(

@@ -19,7 +19,6 @@ export default function ProductDisplayCard({product})
       productseller
     } = product;
 
-      console.log(JSON.stringify(product))
       const navigate = useNavigate();
       return (
     

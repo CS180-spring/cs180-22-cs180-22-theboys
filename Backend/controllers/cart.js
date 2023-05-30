@@ -15,8 +15,6 @@ const GetCartItems = async(req, res)=> {
         name
     } = req.user;
 
-    console.log(req.user)
-
     if(!req.user)
     {
         throw new Error('Unauthenticated');
@@ -29,8 +27,6 @@ const GetCartItems = async(req, res)=> {
                 ON productId = cartProductId
             WHERE cartUserId = $1`, 
             [userId]);
-
-        console.log(items.rowCount);
         res.status(200).json({payload : items.rows})
     }
     catch(err)
