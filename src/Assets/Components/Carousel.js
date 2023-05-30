@@ -1,10 +1,31 @@
 import React from "react"
 import '../Styles/CarouselStyles.css'
+import useWindowSize from "../Hooks/useWindowSize";
 
 
 export default function Carousel({carouselContents})
 {
     const [currentIndex, setCurrentIndex] = React.useState(0);
+    const [size] = useWindowSize();
+
+    React.useEffect(()=>{
+        setCurrentIndex(ClampCarouselIndex(currentIndex));
+    }, [size])
+
+    const GetTranslation = ()=> {
+        if(size > 750)
+        {
+            return -125;
+        }
+        else if(size <= 750 && size > 640)
+        {
+            return -110.5;
+        }
+        else if(size <= 640) {
+            return -125;
+        }   
+        
+    }
 
     const carouselItems = carouselContents.map((current, i) => {
         return (
@@ -12,7 +33,7 @@ export default function Carousel({carouselContents})
                 className="carousel-item"
                 key = {i}
                 style= {{
-                    transform: `translate(${-220 * currentIndex}px)`
+                    transform: `translate(${GetTranslation() * currentIndex}%)`
                 }}
             >
                 {current}
@@ -22,7 +43,17 @@ export default function Carousel({carouselContents})
 
     //Get the number of carousel items visible in the container (4 by default)
     const GetCarouselViewportCount = ()=> {
-        return 4;
+        if(size > 750)
+        {
+            return 4;
+        }
+        else if(size <= 750 && size > 640)
+        {
+            return 3
+        }
+        else if(size <= 640) {
+            return 1;
+        }   
     }
 
     const ClampCarouselIndex = (index)=> {

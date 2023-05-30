@@ -6,9 +6,13 @@ import '../Styles/textStyles.css'
 import CarouselProductCard from "./CarouselProductCard";
 import HomepageHero from "./HomepageHero";
 import OurStory from "./OurStory";
-
+import useGetProducts from "../Hooks/useGetProducts";
+import { ProductsContext } from "../../App";
 export default function Homepage()
 {
+    const[fetchingProducts, setFetchingProducts] = useGetProducts();
+    const {products, setProducts} = React.useContext(ProductsContext);
+
     window.scrollTo({top: 0, left: 0, behavior: "instant"})
 
     const files = [
@@ -28,17 +32,14 @@ export default function Homepage()
         'Ape Industries', 'Apechella', 'GuccApe'
     ]
 
-    const carouselContents = files.map((current, i) => {
+    const carouselContents = products.products.slice(0, 10).map((current, i) => {
         return (
             <CarouselProductCard 
                 key = {i}
-                sellerName={sellers[Math.floor(Math.random() * sellers.length)]}
-                imageUrl={`${process.env.PUBLIC_URL}/Images/BoredApes/${current}`}
-                price={`$${Math.floor(Math.random() * 500)}`}
-                productName={`Bored Ape #${Math.floor(Math.random() * 50)}`}
+                product = {current}
             />
         )
-    })
+    });
 
     return(
         <div>

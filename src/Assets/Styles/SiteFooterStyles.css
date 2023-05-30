@@ -22,6 +22,9 @@
     margin-right: 20px;
 }
 
+.footer-column .title-text{
+    cursor: pointer;
+}
 
 .footer-column > *{
     margin: 2px;
@@ -55,4 +58,12 @@ padding-right: 10px;
     width: 100%;
     height: min-content;
     margin-bottom: 30px;
+}
+
+@media only screen and (max-width: 640px) {
+    .footer-items-row > *{
+        width: 25%;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
 }

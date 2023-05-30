@@ -3,15 +3,41 @@ import '../Styles/CarouselProductCard.css'
 import '../Styles/textStyles.css'
 import { useNavigate } from "react-router-dom";
 //Simplified product card to be used in carousel
-export default function CarouselProductCard({imageUrl, productName, price, sellerName})
+export default function CarouselProductCard({product})
 {
+    const [carouselProduct, setCarouselProduct ] = React.useState(product)
+    
     const navigate = useNavigate();
+    const {
+        productname, 
+        productimageurl, 
+        productprice, 
+        productquantityavailable, 
+        productdescription, 
+        productisonsale, 
+        productsaleprice,
+        productseller
+      } = product;
+
     return(
-        <div className="carousel-product-card" onClick={()=>{navigate("/singleproduct")}}>
-            <img src={imageUrl} />
-            <div className="title-text">{productName}</div>
-            <div className="basic-text">{sellerName}</div>
-            <div className="title-text">{price}</div>
+        <div 
+            className="carousel-product-card" 
+            onClick={()=>{
+                navigate(
+                    {
+                        pathname: "/singleproduct",
+                        search: `itemId=${product.productid}`
+                    }, 
+                    {
+                        state : { product: carouselProduct}
+                    }
+                ); 
+                window.scrollTo({top: 0, left: 0, behavior: "instant"})
+            }}>
+            <img src={productimageurl} />
+            <div className="title-text">{productname}</div>
+            <div className="basic-text">{productseller}</div>
+            <div className="title-text">{`$${productprice}`}</div>
         </div>
     )
 }
