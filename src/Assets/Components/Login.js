@@ -458,13 +458,8 @@ export default function Login()
                 {/*Dont ask me how I screwed this up, but I wrapped
                 the form in a title div. I styled it while is was wrapped in
                 the div and keeping it doesn't ruin anything so I am leaving it.*/}
-                {!register && <div className="title-text">
-                    {LoginForm()}
-                </div>}
-                {register &&
-                    RegisterForm()
-                }
-
+                {!register && LoginForm()}
+                {register && RegisterForm()}
             </div>
     )
 }
