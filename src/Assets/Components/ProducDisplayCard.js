@@ -38,8 +38,8 @@ export default function ProductDisplayCard({product})
        
         <div className='image-display'>
         <img 
-           src={`${process.env.PUBLIC_URL}${productimageurl}`}/>
-        </div>
+           src={ `${process.env.PUBLIC_URL}${productimageurl}`}/>
+        </div> 
 
         <div 
           className='title-text'

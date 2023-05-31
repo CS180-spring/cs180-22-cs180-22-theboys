@@ -10,7 +10,7 @@ import Homepage from './Assets/Components/HomePage';
 import {Route, Routes, BrowserRouter as Router} from 'react-router-dom'
 import SingleProductPage from './Assets/Components/SingleProductPage';
 import AboutPage from './Assets/Components/AboutPage';
-
+import LoginPage from './Assets/Components/LoginPage';
 import React from 'react';
 import ContactUsPage from './Assets/Components/ContactUsPage';
 
@@ -32,6 +32,7 @@ function App() {
           <Route exact path = '/singleproduct' element = {<SingleProductPage />}></Route>
           <Route exact path = '/about' element = {<AboutPage />}></Route>        
           <Route exact path = '/contact' element = {<ContactUsPage />}></Route>   
+          <Route exact path = '/login' element = {<LoginPage />}></Route>   
         </Routes>
       </Router>
     </ProductsContext.Provider>
