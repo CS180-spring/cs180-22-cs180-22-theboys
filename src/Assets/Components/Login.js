@@ -458,13 +458,8 @@ export default function Login()
                 {/*Dont ask me how I screwed this up, but I wrapped
                 the form in a title div. I styled it while is was wrapped in
                 the div and keeping it doesn't ruin anything so I am leaving it.*/}
-                {!register && <div className="title-text" style = {{background: "rgba(0,0,0,0)", color: "rgba(0,0,0,0)", textShadow: "0px 0px 0px rgba(0,0,0,0)"}}>
-                    {LoginForm()}
-                </div>}
-                {register && <div className="title-text" style = {{background: "rgba(0,0,0,0)", color: "rgba(0,0,0,0)", textShadow: "0px 0px 0px rgba(0,0,0,0)"}}>
-                    {RegisterForm()}
-                </div>}
-
+                {!register && LoginForm()}
+                {register && RegisterForm()}
             </div>
     )
 }
