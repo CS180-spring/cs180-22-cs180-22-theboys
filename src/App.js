@@ -16,11 +16,14 @@ import ContactUsPage from './Assets/Components/ContactUsPage';
 
 
 export const ProductsContext = React.createContext();
+export const CartContext = React.createContext();
 
 function App() {
   const[products, setProducts] = React.useState({products: [], requiresUpdate: false});
+  const[cart, setCart] = React.useState({cartItems: [], requiresUpdate: false});
 
   return (
+    <CartContext.Provider value={{cart: cart, setCart : setCart}} >
     <ProductsContext.Provider value = {{products: products, setProducts: setProducts}}>    
       <Router>
         <Routes>
@@ -32,7 +35,7 @@ function App() {
         </Routes>
       </Router>
     </ProductsContext.Provider>
-    
+    </CartContext.Provider>
   );
 }
 
