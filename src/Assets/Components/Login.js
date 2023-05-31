@@ -474,16 +474,10 @@ export default function Login()
     }
 
     return (
-            <div className="displayCard"
+            <div
                 style = {{
-                    zIndex : "11",
-                    position: "fixed",
-                    width : "360px",
-                    height : "min-content",
                     maxHeight : "450px",
                     justifyContent : "flex-start",
-                    left: "calc(50% - 180px)",
-                    top: "calc(50% - 200px)",
                     overflow: "hidden"
                 }}
             >
