@@ -3,11 +3,14 @@
     margin-top: 10px;
     width: 100%;
     max-width: 200px;
+    max-width: 200px;
     display: flex;
     position: relative;
     flex-direction: column;
     gap : 10px;
-    min-height: min-content;
+    min-min-height: min-content;
+    justify-content: center;
+    align-items: start;
     justify-content: center;
     align-items: start;
 }
@@ -194,8 +197,4 @@
   max-width: 200px;
   overflow: visible;
 
-
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 500;
-  font-size: 0.8em;
 }
