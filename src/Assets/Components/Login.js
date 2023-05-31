@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import '../Styles/loginStyles.css'
-
+import '../Styles/textStyles.css'
 
 export default function Login()
 {
@@ -27,35 +27,7 @@ export default function Login()
         initialized: false
     })
 
-    const backgroundVideos = [
-        {
-            url: `${process.env.PUBLIC_URL}/Videos/pexels-man-running.mp4`,
-            overlayAlpha: 0.8
-        },
-        {
-            url: `${process.env.PUBLIC_URL}/Videos/pexels-Woman-lifting-1.mp4`,
-            overlayAlpha: 0.8
-        },
-        {
-            url: `${process.env.PUBLIC_URL}/Videos/pexels-Woman-lifting-2.mp4`,
-            overlayAlpha: 0.8
-        },
-        {
-            url: `${process.env.PUBLIC_URL}/Videos/pexels-Man-lifting-1.mp4`,
-            overlayAlpha: 0.8
-        },
-        {
-            url: `${process.env.PUBLIC_URL}/Videos/pexels-Man-lifting-2.mp4`,
-            overlayAlpha: 0.8
-        },
-        {
-            url: `${process.env.PUBLIC_URL}/Videos/pexels-Woman-rock-climbing.mp4`,
-            overlayAlpha: 0.8
-        }
-    ]
 
-    const [backgroundVideo, setBackgroundVideo] = React.useState(backgroundVideos[Math.floor(Math.random() *backgroundVideos.length)])
-    
     React.useEffect(()=>{
         if(registrationRequest.initialized === true && registrationRequest.password !== '' && registrationRequest.userName !== '' && registrationRequest.email !== '')
         {
@@ -172,9 +144,9 @@ export default function Login()
     function LoginForm()
     {
         return (
-            <div>
+            <div className="login-form-container">
                 <div 
-                    className="title"
+                    className="title-text"
                     style = {{
                         marginTop: "20px",
                         marginLeft: "0",
@@ -285,7 +257,7 @@ export default function Login()
                         marginBottom: "10px",
                     }}
                 >
-                    <div className="title">{"Don't have an account?"}</div>
+                    <div className="title-text">{"Don't have an account?"}</div>
                     <div 
                         className="title-text"
                         onClick={()=>{
@@ -307,9 +279,9 @@ export default function Login()
     {
 
         return (
-            <div>
+            <div className="login-form-container"> 
                 <div 
-                    className="title"
+                    className="title-text"
                     style = {{
                         marginTop: "20px",
                         marginLeft: "0",
@@ -441,6 +413,8 @@ export default function Login()
                     </div>
 
                 </form>
+
+
                 <div 
                     className="row-flex"
                     style={{
@@ -449,7 +423,7 @@ export default function Login()
                         marginBottom: "10px",
                     }}
                 >
-                    <div className="title">{"Already have an account?"}</div>
+                    <div className="title-text">{"Already have an account?"}</div>
                     <div 
                         className="title-text"
                         onClick={()=>{
@@ -463,24 +437,13 @@ export default function Login()
                     </div>
                 </div>
 
+
             </div>
         )
     }
 
-    if(localStorage.getItem('token'))
-    {
-        console.log('Navigating to dash')
-        navigate(0);
-    }
-
     return (
-            <div
-                style = {{
-                    maxHeight : "450px",
-                    justifyContent : "flex-start",
-                    overflow: "hidden"
-                }}
-            >
+            <div>
                  <div 
                     className="title-text"
                     style = {{
