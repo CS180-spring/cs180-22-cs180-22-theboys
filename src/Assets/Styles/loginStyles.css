@@ -186,13 +186,16 @@
 }
 
 .login-form-container{
-  margin: 0;
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-top: 50px;
+  margin-bottom: 75px;
   padding: 0;
   box-sizing: border-box;
   display: flex;
   position: relative;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: start;
   width: 100%;
   height: min-content;
@@ -202,4 +205,28 @@
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 0.8em;
+}
+
+
+.login-divider-bar{
+  position: relative;
+  top: 10%;
+  justify-self: center;
+  bottom: auto;
+  width: 1px;
+  height: 360px;
+  background-color: rgba(110,110,110,1);
+} 
+
+@media only screen and (max-width: 640px) {
+  .login-divider-bar{
+    position: relative;
+    left: 0%;
+    right: auto;
+    width: 80%;
+    height: 1px;
+    background-color: rgba(110,110,110,1);
+    margin-top: 100px;
+    margin-bottom: -10px;
+  }
 }
