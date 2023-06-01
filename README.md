@@ -2,6 +2,10 @@
 
 For this project, our team decided to create a full-stack E-commerce web application that allows users to purchase NFTs. Our user interface will have a similar design as those of other companies. Users will be able to sign in to their unqiue account and make purchases. The web application will also allow users to be able to view their purchase history and view the items in their cart. Payment information will also be handled so that payments can be made successfully. 
 
+# Languages
+
+The primary languages we used in this project are JavaScript, PostgreSQL, HTML, and CSS. All of our files are sent to and retrieved from the Amazon Web Service in a JSON format. PostgreSQL is used in order to query specific information regarding a user, a product, and any other relevant entities. HTML and CSS are primarily used as tools to develop the website that is used as our user interface.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
