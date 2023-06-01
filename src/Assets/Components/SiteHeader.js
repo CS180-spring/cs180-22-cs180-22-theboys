@@ -7,9 +7,22 @@ import '../Styles/textStyles.css'
 import '../Styles/SiteHeaderStyles.css'
 import '../Styles/SiteFooterStyles.css'
 
+import { CartContext } from "../../App";
+import useGetCart from "../Hooks/useGetCart";
+
 export default function SiteHeader({})
 {
+    const {cart, setCart} = React.useContext(CartContext);
     const navigate = useNavigate();
+    const [fetchingCart, setFetchingCart] = useGetCart();
+
+    React.useEffect(()=> {
+        if(cart.requiresUpdate)
+        {
+            console.log('cart requires update')
+            setFetchingCart(true);        
+        }
+    }, [cart, fetchingCart])
 
     return(
         <div>

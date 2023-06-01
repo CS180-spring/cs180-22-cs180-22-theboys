@@ -2,18 +2,18 @@ import React from "react";
 import useGetCart from "./useGetCart";
 import { CartContext } from "../../App";
 
-export default function usePostCart(product, quantity)
+export default function useDeleteCartItem(product)
 {
-    const[postingCart, setPostingCart] = React.useState(false);
+    const[deletingCartItem, setDeletingCartItem] = React.useState(false);
     const {cart, setCart} = React.useContext(CartContext);
 
     React.useEffect(()=>{    
 
         const fetchData = async(bodyData)=> {
             try{
-                const data = await fetch('../api/v1/cart', 
+                const data = await fetch(`../api/v1/cart/${product.cartentryid}`, 
                 {
-                    method: "POST",
+                    method: "DELETE",
                     mode: "cors",
                     headers: {
                         "Content-Type": "application/json",
@@ -22,6 +22,7 @@ export default function usePostCart(product, quantity)
                     body: JSON.stringify(bodyData)
                 })
                 const json = await data.json();
+                console.log(JSON.stringify(json));
                 return json;
             }
             catch(err)
@@ -32,11 +33,10 @@ export default function usePostCart(product, quantity)
             
         }
 
-        if(postingCart)
+        if(deletingCartItem)
         {
             let bodyData = {
-                cartProductId: product.productid,
-                cartQuantity: quantity
+                cartProductId: product.productid
             }   
             const res = fetchData(bodyData)
                 .then((res)=>{
@@ -45,16 +45,13 @@ export default function usePostCart(product, quantity)
                         requiresUpdate: true
                     };
                     setCart(currCart);
-
                 })
                 .then(()=> {
-                    setPostingCart(false);
+                    setDeletingCartItem(false);
                 })
                 .catch(err => {console.log(err)})            
         }
-}, [postingCart])
+    }, [deletingCartItem])
 
-
-return [postingCart, setPostingCart];
-
+    return [deletingCartItem, setDeletingCartItem];
 }

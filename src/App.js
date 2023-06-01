@@ -13,11 +13,11 @@ import AboutPage from './Assets/Components/AboutPage';
 import LoginPage from './Assets/Components/LoginPage';
 import React from 'react';
 import ContactUsPage from './Assets/Components/ContactUsPage';
+import CartPage from './Assets/Components/CartPage';
 
 
 export const ProductsContext = React.createContext();
 export const CartContext = React.createContext();
-
 function App() {
   const[products, setProducts] = React.useState({products: [], requiresUpdate: false});
   const[cart, setCart] = React.useState({cartItems: [], requiresUpdate: false});
@@ -33,6 +33,7 @@ function App() {
           <Route exact path = '/about' element = {<AboutPage />}></Route>        
           <Route exact path = '/contact' element = {<ContactUsPage />}></Route>   
           <Route exact path = '/login' element = {<LoginPage />}></Route>   
+          <Route exact path = '/cart' element = {<CartPage />}></Route>   
         </Routes>
       </Router>
     </ProductsContext.Provider>

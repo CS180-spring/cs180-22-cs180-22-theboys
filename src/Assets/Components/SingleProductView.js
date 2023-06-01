@@ -53,6 +53,10 @@ export default function SingleProductView({product}){
                     <div className="basic-text">{productdescription}</div>
                     <div style={{marginBottom:"0"}} className="basic-text">{"QTY"}</div>
                     <Select 
+                        style = {{
+                            width: '80px',
+                            marginLeft: '5px'
+                        }}
                         initialText={"1"} 
                         options={[1,2,3]}
                         onChangeSelection={(selection)=> {ChangeSelection(selection)}}    

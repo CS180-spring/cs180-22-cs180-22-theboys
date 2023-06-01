@@ -7,7 +7,7 @@ import { CartContext } from "../../App";
 export default function useGetCart()
 {
     const {cart, setCart} = React.useContext(CartContext)
-
+    
     const[fetchingCart, setFetchingCart] = React.useState(true);
 
     React.useEffect(()=>{    
@@ -49,7 +49,6 @@ export default function useGetCart()
                 })
     
                 const json = await data.json();
-                setCart({cartItems: json.payload, requiresUpdate: false})
                 return json;
             }
             catch(err)
@@ -67,19 +66,20 @@ export default function useGetCart()
             if(localStorage.getItem('token') == null)
             {
                 const res = createTempUser().then((res)=> {
-                    fetchData().catch(err => {console.log(err)})
+                    fetchData().then(res=> {
+                        setCart({cartItems: res.payload, requiresUpdate: false})
+                        setFetchingCart(false)
+                    }).catch(err => {console.log(err)})
                 }).catch(err => {console.log(err)})
             }
             else{
-                const res = fetchData().catch(err => {console.log(err)})
+                const res = fetchData().then(res=> {
+                    setCart( prev => ({cartItems: res.payload, requiresUpdate: false}))
+                    setFetchingCart(false)
+                }).catch(err => {console.log(err)})
             }
         }
-    }, [fetchingCart])
+    }, [fetchingCart, cart])
 
     return [fetchingCart, setFetchingCart];
-
-
-
-
-
 }
