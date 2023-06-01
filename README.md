@@ -6,18 +6,16 @@ For this project, our team decided to create a full-stack E-commerce web applica
 
 The primary languages we used in this project are JavaScript, PostgreSQL, HTML, and CSS. All of our files are sent to and retrieved from the Amazon Web Service in a JSON format. PostgreSQL is used in order to query specific information regarding a user, a product, and any other relevant entities. HTML and CSS are primarily used as tools to develop the website that is used as our user interface.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Available Scripts
 
-In the project directory, you can run:
+For this project, we utilized React.js for our front-end development. In order to start our web application,you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This comman runs the app in development mode.\
+You can open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
+The page will reload when you make any changes.\
 You may also see any lint errors in the console.
 
 ### `npm test`
