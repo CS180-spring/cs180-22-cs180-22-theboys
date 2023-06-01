@@ -1,5 +1,7 @@
 # E-Commerce NFT Website
 
+For this project, our team decided to create a full-stack E-commerce web application that allows users to purchase NFTs. Our user interface will have a similar design as those of other companies. Users will be able to sign in to their unqiue account and make purchases. The web application will also allow users to be able to view their purchase history and view the items in their cart. Payment information will also be handled so that payments can be made successfully. 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
