@@ -8,12 +8,15 @@ import HomepageHero from "./HomepageHero";
 import OurStory from "./OurStory";
 import useGetProducts from "../Hooks/useGetProducts";
 import { ProductsContext } from "../../App";
+import Spinner from "./Spinner";
 export default function Homepage()
 {
     const[fetchingProducts, setFetchingProducts] = useGetProducts();
     const {products, setProducts} = React.useContext(ProductsContext);
 
     window.scrollTo({top: 0, left: 0, behavior: "instant"})
+
+    React.useEffect(()=> {}, [fetchingProducts])
 
     const files = [
         'QmabwwMDTAvKNvcapqWgnRDkMqXuMSkpK5Q8oopMhT7wAU.png',
@@ -40,6 +43,20 @@ export default function Homepage()
             />
         )
     });
+
+    if(fetchingProducts)
+    {
+        return(
+            <div>
+                <SiteHeader />
+                <Spinner style = {{
+                    width: '100%',
+                    justifyContent: 'center'
+                }}/>
+                <SiteFooter />
+            </div>
+        )
+    }
 
     return(
         <div>

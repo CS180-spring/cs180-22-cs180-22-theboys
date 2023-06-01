@@ -7,15 +7,8 @@ import '../Styles/textStyles.css'
 import '../Styles/SiteHeaderStyles.css'
 import '../Styles/SiteFooterStyles.css'
 
-import { CartContext } from "../../App";
-import useGetCart from "../Hooks/useGetCart";
-
 export default function SiteHeader({})
 {
-    const {cart, setCart} = React.useContext(CartContext);
-    const [fetchingCart, setFetchingCart] = useGetCart();
-
-
     const navigate = useNavigate();
 
     return(
@@ -24,7 +17,7 @@ export default function SiteHeader({})
                 <ProductSearchBar/>
                 <div className='title-text'>Bored Ape Escape</div>
                 <div className="cart-group">
-                    <div className="title-text"onClick={()=>{console.log("sign in")}}>Sign In</div>
+                    <div className="title-text" onClick={()=>{navigate('/login')}}>Sign In</div>
                     <ProductCart/>
                 </div>
             </div>

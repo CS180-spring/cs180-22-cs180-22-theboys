@@ -259,6 +259,7 @@ export default function Login()
                 >
                     <div className="title-text">{"Don't have an account?"}</div>
                     <div 
+                        style={{cursor: "pointer"}}
                         className="title-text"
                         onClick={()=>{
                             setRegister(true);
@@ -424,7 +425,8 @@ export default function Login()
                     }}
                 >
                     <div className="title-text">{"Already have an account?"}</div>
-                    <div 
+                    <div
+                        style={{cursor: "pointer"}}
                         className="title-text"
                         onClick={()=>{
                             setRegister(false);

@@ -26,6 +26,9 @@ export default function useGetProducts()
                     products : payload
                 })
             })
+            .then(()=> {
+                setFetchingProducts(false);
+            })
         }
     }, [fetchingProducts])
 

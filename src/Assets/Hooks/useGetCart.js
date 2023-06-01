@@ -23,7 +23,6 @@ export default function useGetCart()
                 })
                 
                 const json = await data.json();
-                console.log(json)
                 localStorage.setItem('token', json.token);  
                 return json;
             }
@@ -36,24 +35,33 @@ export default function useGetCart()
         }
 
         const fetchData = async()=> {
-            const data = await fetch('../api/v1/cart', 
+            try
             {
-                method: "GET",
-                mode: "cors",
-                headers: {
-                    "Content-Type": "application/json",
-                    "authorization" : `Bearer ${localStorage.getItem('token')}`
-                }
-                
-            })
-
-            const json = await data.json();
-            setCart({cartItems: json.payload, requiresUpdate: false})
-            return json;
+                const data = await fetch('../api/v1/cart', 
+                {
+                    method: "GET",
+                    mode: "cors",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "authorization" : `Bearer ${localStorage.getItem('token')}`
+                    }
+                    
+                })
+    
+                const json = await data.json();
+                setCart({cartItems: json.payload, requiresUpdate: false})
+                return json;
+            }
+            catch(err)
+            {
+                console.log(err);
+                throw err;
+            }
+        
         }
 
 
-        if(fetchingCart/*|| products.requiresUpdate*/)
+        if(fetchingCart || cart.requiresUpdate)
         {
             //Not logged in
             if(localStorage.getItem('token') == null)
@@ -64,7 +72,6 @@ export default function useGetCart()
             }
             else{
                 const res = fetchData().catch(err => {console.log(err)})
-                console.log(JSON.stringify(cart))
             }
         }
     }, [fetchingCart])

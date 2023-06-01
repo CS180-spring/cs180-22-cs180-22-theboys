@@ -3,7 +3,7 @@ import React from "react";
 import '../Styles/SelectStyles.css'
 
 //Custom select form
-export default function Select({options, initialText, style})
+export default function Select({options, initialText, style, onChangeSelection})
 {
     const [focused, setFocused] = React.useState(false)
     const [currentSelection, setCurrentSelection] = React.useState(initialText ? initialText : "Sort By")
@@ -16,6 +16,9 @@ export default function Select({options, initialText, style})
                 onClick={()=>{
                     setCurrentSelection(current)
                     setFocused(false);
+                    if(onChangeSelection){ 
+                        onChangeSelection(current);
+                    }
                 }}
                 key={index}
             >

@@ -82,6 +82,7 @@ const PostCartItem = async(req, res) => {
                 cartQuantity
             ]
         )
+        console.log(`Cart entry created with id: ${results.rows[0].cartentryid}`)
         res.status(200).json({msg: `Cart entry created with id: ${results.rows[0].cartentryid}`})
     }
     catch(err)
