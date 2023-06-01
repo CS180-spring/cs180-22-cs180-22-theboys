@@ -2,9 +2,11 @@ import React from "react";
 import useGetCart from "./useGetCart";
 import { CartContext } from "../../App";
 
-export default function useUpdateCartItem(product)
+export default function useUpdateCartItem()
 {
     const[updatingCartItem, setUpdatingCartItem] = React.useState(false);
+    const[product, setProduct] = React.useState(null);
+
     const {cart, setCart} = React.useContext(CartContext);
 
     React.useEffect(()=>{    
@@ -34,9 +36,7 @@ export default function useUpdateCartItem(product)
 
         if(updatingCartItem)
         {
-            let bodyData = {
-                cartProductId: product.productid
-            }   
+            let bodyData = product 
             const res = fetchData(bodyData)
                 .then((res)=>{
                     let currCart = {
@@ -52,5 +52,5 @@ export default function useUpdateCartItem(product)
         }
     }, [updatingCartItem])
 
-    return [updatingCartItem, setUpdatingCartItem];
+    return [updatingCartItem, setUpdatingCartItem, product, setProduct];
 }

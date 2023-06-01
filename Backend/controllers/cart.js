@@ -28,7 +28,6 @@ const GetCartItems = async(req, res)=> {
             WHERE cartUserId = $1`, 
             [userId]);
 
-            console.log(items.rowCount)
         res.status(200).json({
             payload : items.rows, 
             count: items.rows.length
@@ -127,16 +126,32 @@ const PostCartItem = async(req, res) => {
 
 const UpdateCartItem = async(req, res)=> {
     const {userId} = req.user;
-    const {cartQuantity} = req.body;
+    const {cartquantity} = req.body;
     const cartEntryId = req.params.id;
     try{
+        if(Number(cartquantity) <= 0)
+        {
+            const results = await pool.query(
+                `DELETE FROM "cartItems" 
+                WHERE cartEntryId = $1 AND cartUserId = $2
+                RETURNING *`,
+                [
+                    cartEntryId,
+                    userId
+                ]
+                )
+            return res.status(200).json({
+                msg: `Deleted entry with id: ${cartEntryId}`
+            })
+        }
+
         const results = await pool.query(
             `UPDATE "cartItems" SET
                 cartQuantity = $1
             WHERE cartEntryId = $2 AND cartUserId = $3
             RETURNING *`,
             [
-                cartQuantity,
+                cartquantity,
                 cartEntryId,
                 userId
             ]
@@ -147,6 +162,7 @@ const UpdateCartItem = async(req, res)=> {
     }
     catch(err)
     {
+        console.log(err.message);
         throw err;
     }
 }
@@ -165,8 +181,6 @@ const DeleteCartItem = async(req, res)=> {
                 userId
             ]
             )
-        console.log(results.rowCount)
-       console.log(`Deleted entry with id: ${cartEntryId}`);     
         return res.status(200).json({
             msg: `Deleted entry with id: ${cartEntryId}`
         })

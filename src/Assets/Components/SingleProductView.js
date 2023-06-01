@@ -62,7 +62,12 @@ export default function SingleProductView({product}){
                         onChangeSelection={(selection)=> {ChangeSelection(selection)}}    
                     />
                     <div 
-                        style={{marginTop:"15%"}} 
+                        className="title-text"
+                        style={{marginTop:"15%"}}
+                    >
+                        {`$${Number(productQuantity) * Number(product.productprice)}`}
+                    </div>
+                    <div  
                         className="submit-button"
                         onClick = {()=> {postCartItem()}}    
                     >

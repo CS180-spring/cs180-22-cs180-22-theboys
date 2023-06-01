@@ -19,8 +19,7 @@
 .cart-grid-item{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    position: relative;
     justify-content: start;
-
+    position: relative;
+    align-items: center;
 }
