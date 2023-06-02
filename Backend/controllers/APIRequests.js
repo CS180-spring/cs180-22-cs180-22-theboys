@@ -121,16 +121,12 @@ const ProcessSuccessfulPayment = async(event)=> {
         let cartItems = items.rows.map(item => { 
             return( {cartentryid: item.cartentryid})
         })
-        console.log(cartItems)
         let res = await CreateOrder(userid, cartItems);
-        console.log(res);
     }
     catch(err)
     {
         throw err;
     }   
-    
-    console.log(userid)
 }
 
 const CreateOrder = async(userId, cartItems)=> {    
@@ -151,10 +147,7 @@ const CreateOrder = async(userId, cartItems)=> {
                 uuids,
                 userId
             ]
-        )
-        console.log(`Order created with id: ${results.rows[0].orderid}`)
-
-        
+        )        
         //Update the cart item status
         const cartUpdateResults = await pool.query(
             `UPDATE "cartItems" SET

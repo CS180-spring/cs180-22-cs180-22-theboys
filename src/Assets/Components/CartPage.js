@@ -26,6 +26,28 @@ export default function CartPage()
     const GenerateCartList = ()=> {
         let arr = [];
 
+        if(cart.cartItems.length <= 0)
+        {
+            arr.push(
+                <div className="cart-grid-item"  key = {1}  style = {{ gridColumn: '1 / span 4'}}>
+                    <div style = {{marginTop: "80px"}}  className="title-text">{"No items in cart"}</div>
+                    
+                    <div 
+                        className="basic-text"
+                        style={{
+                            textDecoration: 'underline',
+                            cursor: 'pointer',
+                            marginTop: "5px",
+                            marginBottom: "100px"
+                        }}   
+                        onClick={()=>{navigate('/shop')}} 
+                    >{"Continue Shopping"}</div>
+                </div>
+            )
+            return arr;
+        }
+
+
         arr.push(
             <div className="cart-grid-item" key = {-4}>
                 <div className="title-text">{"Product"}</div>
@@ -107,6 +129,7 @@ export default function CartPage()
             j++;
         }
 
+
         //j*5 + 5, 6, 7, etc
         arr.push(
            
@@ -126,11 +149,12 @@ export default function CartPage()
         }, 0)
         
 
-        const shipping = 5.51;
+        const shipping = 0;
+        const salesTax  = 0;/*subtotal * 0.08*/
         arr.push(
             <div className="cart-grid-item"  key = {j*5 + 3}>
                 <div className="title-text" style = {{margin: "5px"}}>{`$${subtotal}`}</div>
-                <div className="title-text"  style = {{margin: "5px"}}>{`$${subtotal * 0.08}`}</div>
+                <div className="title-text"  style = {{margin: "5px"}}>{`$${salesTax}`}</div>
                 <div className="title-text"  style = {{margin: "5px"}}>{`$${shipping}`}</div>
             </div>
         )
@@ -152,7 +176,7 @@ export default function CartPage()
             </div>
 
         )
-        let total = Number(subtotal) + Math.floor( Number(subtotal * 0.08).toPrecision(2)) + Number(shipping);
+        let total = Number(subtotal) + Math.floor( Number(salesTax).toPrecision(2)) + Number(shipping);
         arr.push(
             <div className="cart-grid-item"  key = {j*5 + 6}  style = {{gridColumn: '4'}}>
                 <div className="title-text" style = {{margin: "5px"}}>{`$${total}`}</div>

@@ -66,7 +66,6 @@ const InitTables = async()=>{
     for(let i = 0; i < queries.length; i++)
     {
         await execute(queries[i]).then(result => {
-            console.log('Table created.') 
         }) 
     }
 }
