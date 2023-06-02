@@ -13,12 +13,14 @@ const ProductsRouter = require('./routers/productQueries.js');
 const AuthRouter = require('./routers/auth.js');
 const CartRouter = require('./routers/cart.js');
 const StripeRouter = require('./routers/APIRequests.js')
+const OrderRouter = require('./routers/order.js')
 
 //Use routers
 app.use('/api/v1/products', ProductsRouter);
 app.use('/api/v1/auth', AuthRouter);
 app.use('/api/v1/cart', authenticationMiddleware, CartRouter)
 app.use('/api/v1/purchase', StripeRouter);
+app.use('/api/v1/order', authenticationMiddleware, OrderRouter)
 
 /*
 app.use(express.static(path.join(__dirname, "../public")));
@@ -26,6 +28,8 @@ app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "../", "public", "index.html"));
 });
 */
+
+
 
 const port = process.env.SERVER_PORT || 3001;
 

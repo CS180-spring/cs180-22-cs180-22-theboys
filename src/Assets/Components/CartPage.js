@@ -4,14 +4,15 @@ import SiteFooter from "./SiteFooter";
 import Select from "./Select";
 import CartPageItemView from "./CartPageItemView";
 import useUpdateCartItem from "../Hooks/useUpdateCart";
+import useStripePayment from "../Hooks/useStripePayment";
 
 import { CartContext } from "../../App";
+import { useNavigate } from "react-router-dom";
 
 import '../Styles/CartPageStyles.css'
 import '../Styles/CartPageGrid.css'
 import '../Styles/SiteFooterStyles.css'
 import '../Styles/SingleProductPage.css'
-import { useNavigate } from "react-router-dom";
 
 
 export default function CartPage()
@@ -20,6 +21,7 @@ export default function CartPage()
 
     const {cart, setCart} = React.useContext(CartContext);
     const [updatingCartItem, setUpdatingCartItem, product, setProduct] = useUpdateCartItem();
+    const [purchasing, setPurchasing] = useStripePayment();
 
     const GenerateCartList = ()=> {
         let arr = [];
@@ -54,6 +56,7 @@ export default function CartPage()
             arr.push(
                 <div className="cart-grid-item" key = {i * 5}>
                     <CartPageItemView 
+                        canRemove = {true}
                         product={cart.cartItems[i]}
                     />
                 </div>
@@ -105,7 +108,6 @@ export default function CartPage()
         }
 
         //j*5 + 5, 6, 7, etc
-        console.log(j);
         arr.push(
            
             <div className="cart-shipping-options" key = {j*5 + 1}></div>
@@ -119,9 +121,10 @@ export default function CartPage()
 
         )
 
-        const subtotal = cart.cartItems.reduce((accumulator, current)=> {
-            return accumulator + Number( current.productprice);
+        let subtotal = cart.cartItems.reduce((accumulator, current)=> {
+            return accumulator + Number(current.cartquantity) * Number(current.productprice);
         }, 0)
+        
 
         const shipping = 5.51;
         arr.push(
@@ -149,9 +152,10 @@ export default function CartPage()
             </div>
 
         )
+        let total = Number(subtotal) + Math.floor( Number(subtotal * 0.08).toPrecision(2)) + Number(shipping);
         arr.push(
             <div className="cart-grid-item"  key = {j*5 + 6}  style = {{gridColumn: '4'}}>
-                <div className="title-text" style = {{margin: "5px"}}>{`$${subtotal + subtotal * 0.08 + shipping}`}</div>
+                <div className="title-text" style = {{margin: "5px"}}>{`$${total}`}</div>
             </div>
         )
 
@@ -160,7 +164,9 @@ export default function CartPage()
                     <div  
                         style = {{width: '200px', marginTop: '20px'}}
                         className="submit-button"
-                        onClick = {()=> {}}    
+                        onClick = {()=> {
+                            setPurchasing(true);
+                        }}    
                     >
                             {"Checkout"}
                     </div>

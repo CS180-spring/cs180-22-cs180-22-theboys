@@ -5,7 +5,7 @@ import '../Styles/textStyles.css'
 import useDeleteCartItem from "../Hooks/useDeleteCartItem";
 import { useNavigate } from "react-router-dom";
 
-export default function CartPageItemView({product})
+export default function CartPageItemView({product, canRemove})
 {
     const navigate = useNavigate()
     const [deletingCartItem, setDeletingCartItem] = useDeleteCartItem(product);
@@ -30,7 +30,7 @@ export default function CartPageItemView({product})
                 <div className="title-text">{product.productseller}</div>
                 <div className="title-text">{product.productname}</div>    
          
-                <div 
+                {canRemove && <div 
                     onClick={()=>{setDeletingCartItem(true)}}
                     className="basic-text"
                     style = {{
@@ -38,7 +38,7 @@ export default function CartPageItemView({product})
                         textDecoration: 'underline',
                         cursor: 'pointer'
                     }}
-                >{'Remove'}</div>
+                >{'Remove'}</div>}
             </div>
         </div>
     )

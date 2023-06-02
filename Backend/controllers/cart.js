@@ -25,8 +25,8 @@ const GetCartItems = async(req, res)=> {
             `SELECT * FROM "cartItems"
             RIGHT JOIN products
                 ON productId = cartProductId
-            WHERE cartUserId = $1`, 
-            [userId]);
+            WHERE cartUserId = $1 AND orderCompleted = $2`, 
+            [userId, false]);
 
         res.status(200).json({
             payload : items.rows, 
@@ -72,8 +72,8 @@ const PostCartItem = async(req, res) => {
             `SELECT * FROM "cartItems"
             RIGHT JOIN products
                 ON productId = cartProductId
-            WHERE cartProductId = $1 AND cartUserId = $2`,
-            [cartProductId, userId]
+            WHERE cartProductId = $1 AND cartUserId = $2 AND ordercompleted = $3`,
+            [cartProductId, userId, false]
         )
         
         //This means an entry with the product exists. If this is the case we want to update the quantity

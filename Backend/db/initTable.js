@@ -36,10 +36,16 @@ const queries = [
         cartProductId uuid NOT NULL,
 	    cartUserId uuid NOT NULL,
         cartQuantity integer NOT NULL,
+        orderCompleted BOOLEAN DEFAULT false,
         PRIMARY KEY (cartEntryId)
+    );`,
+    `CREATE TABLE IF NOT EXISTS "orders" (
+	    orderId uuid DEFAULT uuid_generate_v4 () NOT NULL,
+        orderCartItemIds uuid[] NOT NULL,
+	    orderUserId uuid NOT NULL,
+        createdAt timestamp DEFAULT now(),
+        PRIMARY KEY (orderId)
     );`
-
-
 ];
 
 
