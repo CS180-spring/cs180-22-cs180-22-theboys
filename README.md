@@ -12,6 +12,10 @@ The primary languages we used in this project are JavaScript, PostgreSQL, HTML, 
 
 Once a customer loads our web application, a Home page will be loaded and displayed. The Home page contains various features such as a Sign In link, a Cart Icon, and a Shop link. This Home page allows customers to also be able to view recommended NFTs as well as new arrivals. It also contains an About Us page as well as a Contact information.
 
+<img width="740" alt="Screenshot 2023-06-01 at 10 24 39 PM" src="https://github.com/CS180-spring/cs180-22-theboys/assets/72373261/682efab3-dae9-4c49-a329-dc37226ad55b">
+
+<img width="740" alt="Screenshot 2023-06-01 at 10 25 11 PM" src="https://github.com/CS180-spring/cs180-22-theboys/assets/72373261/2c24ecfd-936b-4bfc-ba3a-3adb4b3621e0">
+
 ### View NFTs
 
 A customer is able to view all of the NFTs that are currently being offered in two areas of the web application. The first area involves a carousel that can be seen on the Home page. This carousel has a select amount of NFTs that are taken from our inventory based on previously purchased NFTs. 
@@ -19,6 +23,9 @@ A customer is able to view all of the NFTs that are currently being offered in t
 <img width="1177" alt="Screenshot 2023-06-01 at 9 46 48 PM" src="https://github.com/CS180-spring/cs180-22-theboys/assets/72373261/939abc98-a0f0-4de0-8772-543122637270">
 
 The second area involves a Shop section that can be found at the top of our Home page. On this page, a customer can view all of the NFTs that are available for purchase. The customer can also click on individual NFTs to view its unique details.
+
+<img width="668" alt="Screenshot 2023-06-01 at 10 26 05 PM" src="https://github.com/CS180-spring/cs180-22-theboys/assets/72373261/9754e855-4fb3-445e-aa4e-7f7e5f199d87">
+
 
 ### View Cart
 
