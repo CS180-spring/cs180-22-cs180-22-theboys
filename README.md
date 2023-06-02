@@ -10,11 +10,13 @@ The primary languages we used in this project are JavaScript, PostgreSQL, HTML, 
 
 ### Home Page
 
-Once a customer loads our web application, a Home page will be loaded and displayed. The Home page contains various features such as a Sign In link, a Cart Icon, and a Shop link. This Home page allows customers to also be able to view recommended NFTs as well as new arrivals. It also contains an About Us page as well as a Contact information.
+Once a customer loads our web application, a Home page will be loaded and displayed. The Home page contains various features such as a Sign In link, a Cart Icon, and a Shop link. This Home page allows customers to also be able to view recommended NFTs as well as new arrivals.\
 
 <img width="740" alt="Screenshot 2023-06-01 at 10 24 39 PM" src="https://github.com/CS180-spring/cs180-22-theboys/assets/72373261/682efab3-dae9-4c49-a329-dc37226ad55b">
 
-<img width="740" alt="Screenshot 2023-06-01 at 10 25 11 PM" src="https://github.com/CS180-spring/cs180-22-theboys/assets/72373261/2c24ecfd-936b-4bfc-ba3a-3adb4b3621e0">
+It also contains an About Us page as well as a Contact information.\
+
+<img width="740" alt="Screenshot 2023-06-01 at 10 25 11 PM" src="https://github.com/CS180-spring/cs180-22-theboys/assets/72373261/2c24ecfd-936b-4bfc-ba3a-3adb4b3621e0">\
 
 ### View NFTs
 
