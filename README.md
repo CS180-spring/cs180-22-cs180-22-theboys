@@ -11,6 +11,7 @@ The primary languages we used in this project are JavaScript, PostgreSQL, HTML, 
 ### View NFTs
 
 A customer is able to view all of the NFTs that are currently being offered in two areas of the web application. The first area involves a carousel that can be seen on the Home page. This carousel has a select amount of NFTs that are randomly taken from our inventory. 
+<img width="1177" alt="Screenshot 2023-06-01 at 9 46 48 PM" src="https://github.com/CS180-spring/cs180-22-theboys/assets/72373261/939abc98-a0f0-4de0-8772-543122637270">
 
 ## Available Scripts
 
