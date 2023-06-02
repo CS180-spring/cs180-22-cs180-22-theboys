@@ -8,6 +8,10 @@ The primary languages we used in this project are JavaScript, PostgreSQL, HTML, 
 
 ## Project Features
 
+### View NFTs
+
+A customer is able to view all of the NFTs that are currently being offered in two areas of the web application. The first area involves a carousel that can be seen on the Home page. This carousel has a select amount of NFTs that are randomly taken from our inventory. 
+
 ## Available Scripts
 
 For this project, we utilized React.js for our front-end development. In order to start our web application,you can run:
