@@ -13,10 +13,16 @@ import useGetCart from "../Hooks/useGetCart";
 export default function SiteHeader({})
 {
     const {cart, setCart} = React.useContext(CartContext);
+    const navigate = useNavigate();
     const [fetchingCart, setFetchingCart] = useGetCart();
 
-
-    const navigate = useNavigate();
+    React.useEffect(()=> {
+        if(cart.requiresUpdate)
+        {
+            console.log('cart requires update')
+            setFetchingCart(true);        
+        }
+    }, [cart, fetchingCart])
 
     return(
         <div>
@@ -24,7 +30,7 @@ export default function SiteHeader({})
                 <ProductSearchBar/>
                 <div className='title-text'>Bored Ape Escape</div>
                 <div className="cart-group">
-                    <div className="title-text"onClick={()=>{console.log("sign in")}}>Sign In</div>
+                    <div className="title-text" onClick={()=>{navigate('/login')}}>Sign In</div>
                     <ProductCart/>
                 </div>
             </div>

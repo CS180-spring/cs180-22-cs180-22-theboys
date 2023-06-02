@@ -23,6 +23,7 @@ export default function CarouselProductCard({product})
         <div 
             className="carousel-product-card" 
             onClick={()=>{
+                window.scrollTo({top: 0, left: 0, behavior: "instant"})
                 navigate(
                     {
                         pathname: "/singleproduct",
@@ -31,8 +32,7 @@ export default function CarouselProductCard({product})
                     {
                         state : { product: carouselProduct}
                     }
-                ); 
-                window.scrollTo({top: 0, left: 0, behavior: "instant"})
+                );
             }}>
             <img src={productimageurl} />
             <div className="title-text">{productname}</div>

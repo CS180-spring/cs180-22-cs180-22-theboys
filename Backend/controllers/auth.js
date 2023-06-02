@@ -170,10 +170,32 @@ const CheckForEmail = async(email) =>
     }
 }
 
+const CheckForUserid = async(userid) => 
+{
+    try{
+        const {rows} = await pool.query(
+            `SELECT * FROM users WHERE userId = $1`,
+            [userid]
+        )
+        const user = rows[0];
+        if(!user)
+        {
+            return null;
+        }
+        
+        return user;
+    }
+    catch(err)
+    {
+        throw err;
+    }
+}
+
 module.exports = {
     Login,
     Register,
-    CreateTempUser
+    CreateTempUser,
+    CheckForUserid
 }
 
 const CreateJWT = async (user) => {

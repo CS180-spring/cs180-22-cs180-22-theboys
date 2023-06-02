@@ -5,7 +5,6 @@ import SiteFooter from "./SiteFooter";
 
 import { useLocation, useSearchParams } from "react-router-dom";
 export default function SingleProductPage(){
-    window.scrollTo({top: 0, left: 0, behavior: "instant"})
     const location = useLocation();
     const product = location.state.product
     return(

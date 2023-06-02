@@ -25,6 +25,7 @@ export default function ProductDisplayCard({product})
         <div 
           className='neomorphic-card' 
           onClick={()=>{
+            window.scrollTo({top: 0, left: 0, behavior: "instant"})
             navigate(
             {
               pathname: "/singleproduct",

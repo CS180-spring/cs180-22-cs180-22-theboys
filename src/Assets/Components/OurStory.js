@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 export default function OurStory()
 {
     const navigate = useNavigate();
-    
+        
     return(
         <div>
             <div className="footer-divider-bar" style = {{width: "80%"}}></div>

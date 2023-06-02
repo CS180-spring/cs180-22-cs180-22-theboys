@@ -7,7 +7,7 @@ import { CartContext } from "../../App";
 export default function useGetCart()
 {
     const {cart, setCart} = React.useContext(CartContext)
-
+    
     const[fetchingCart, setFetchingCart] = React.useState(true);
 
     React.useEffect(()=>{    
@@ -23,7 +23,6 @@ export default function useGetCart()
                 })
                 
                 const json = await data.json();
-                console.log(json)
                 localStorage.setItem('token', json.token);  
                 return json;
             }
@@ -36,43 +35,51 @@ export default function useGetCart()
         }
 
         const fetchData = async()=> {
-            const data = await fetch('../api/v1/cart', 
+            try
             {
-                method: "GET",
-                mode: "cors",
-                headers: {
-                    "Content-Type": "application/json",
-                    "authorization" : `Bearer ${localStorage.getItem('token')}`
-                }
-                
-            })
-
-            const json = await data.json();
-            setCart({cartItems: json.payload, requiresUpdate: false})
-            return json;
+                const data = await fetch('../api/v1/cart', 
+                {
+                    method: "GET",
+                    mode: "cors",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "authorization" : `Bearer ${localStorage.getItem('token')}`
+                    }
+                    
+                })
+    
+                const json = await data.json();
+                return json;
+            }
+            catch(err)
+            {
+                console.log(err);
+                throw err;
+            }
+        
         }
 
 
-        if(fetchingCart/*|| products.requiresUpdate*/)
+        if(fetchingCart || cart.requiresUpdate)
         {
             //Not logged in
             if(localStorage.getItem('token') == null)
             {
                 const res = createTempUser().then((res)=> {
-                    fetchData().catch(err => {console.log(err)})
+                    fetchData().then(res=> {
+                        setCart({cartItems: res.payload, requiresUpdate: false})
+                        setFetchingCart(false)
+                    }).catch(err => {console.log(err)})
                 }).catch(err => {console.log(err)})
             }
             else{
-                const res = fetchData().catch(err => {console.log(err)})
-                console.log(JSON.stringify(cart))
+                const res = fetchData().then(res=> {
+                    setCart( prev => ({cartItems: res.payload, requiresUpdate: false}))
+                    setFetchingCart(false)
+                }).catch(err => {console.log(err)})
             }
         }
-    }, [fetchingCart])
+    }, [fetchingCart, cart])
 
     return [fetchingCart, setFetchingCart];
-
-
-
-
-
 }

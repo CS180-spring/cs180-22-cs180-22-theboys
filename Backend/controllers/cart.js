@@ -25,9 +25,13 @@ const GetCartItems = async(req, res)=> {
             `SELECT * FROM "cartItems"
             RIGHT JOIN products
                 ON productId = cartProductId
-            WHERE cartUserId = $1`, 
-            [userId]);
-        res.status(200).json({payload : items.rows})
+            WHERE cartUserId = $1 AND orderCompleted = $2`, 
+            [userId, false]);
+
+        res.status(200).json({
+            payload : items.rows, 
+            count: items.rows.length
+        })
     }
     catch(err)
     {
@@ -64,25 +68,55 @@ const PostCartItem = async(req, res) => {
     const {userId} = req.user;
 
     try{
-        const results = await pool.query(
-            `INSERT into "cartItems" (
-                cartProductId,
-	            cartUserId,
-                cartQuantity
-            )
-            VALUES (
-                $1,
-                $2,
-                $3
-            )
-            RETURNING *`,
-            [
-                cartProductId,
-                userId,
-                cartQuantity
-            ]
+        const checkResult = await pool.query(
+            `SELECT * FROM "cartItems"
+            RIGHT JOIN products
+                ON productId = cartProductId
+            WHERE cartProductId = $1 AND cartUserId = $2 AND ordercompleted = $3`,
+            [cartProductId, userId, false]
         )
-        res.status(200).json({msg: `Cart entry created with id: ${results.rows[0].cartentryid}`})
+        
+        //This means an entry with the product exists. If this is the case we want to update the quantity
+        if(checkResult.rowCount > 0)
+        {
+            const results = await pool.query(
+                `UPDATE "cartItems" SET
+                    cartQuantity = $1
+                WHERE cartEntryId = $2 AND cartUserId = $3
+                RETURNING *`,
+                [
+                    cartQuantity + checkResult.rows[0].cartquantity,
+                    checkResult.rows[0].cartentryid,
+                    userId
+                ]
+                )
+            console.log(results.rows[0])
+            return res.status(200).json({
+                msg: `Updated entry with id: ${checkResult.rows[0].cartentryid}`
+            })
+        }
+        else{
+            const results = await pool.query(
+                `INSERT into "cartItems" (
+                    cartProductId,
+                    cartUserId,
+                    cartQuantity
+                )
+                VALUES (
+                    $1,
+                    $2,
+                    $3
+                )
+                RETURNING *`,
+                [
+                    cartProductId,
+                    userId,
+                    cartQuantity
+                ]
+            )
+            console.log(`Cart entry created with id: ${results.rows[0].cartentryid}`)
+            res.status(200).json({msg: `Cart entry created with id: ${results.rows[0].cartentryid}`})
+        }
     }
     catch(err)
     {
@@ -92,16 +126,32 @@ const PostCartItem = async(req, res) => {
 
 const UpdateCartItem = async(req, res)=> {
     const {userId} = req.user;
-    const {cartQuantity} = req.body;
+    const {cartquantity} = req.body;
     const cartEntryId = req.params.id;
     try{
+        if(Number(cartquantity) <= 0)
+        {
+            const results = await pool.query(
+                `DELETE FROM "cartItems" 
+                WHERE cartEntryId = $1 AND cartUserId = $2
+                RETURNING *`,
+                [
+                    cartEntryId,
+                    userId
+                ]
+                )
+            return res.status(200).json({
+                msg: `Deleted entry with id: ${cartEntryId}`
+            })
+        }
+
         const results = await pool.query(
             `UPDATE "cartItems" SET
                 cartQuantity = $1
             WHERE cartEntryId = $2 AND cartUserId = $3
             RETURNING *`,
             [
-                cartQuantity,
+                cartquantity,
                 cartEntryId,
                 userId
             ]
@@ -112,6 +162,7 @@ const UpdateCartItem = async(req, res)=> {
     }
     catch(err)
     {
+        console.log(err.message);
         throw err;
     }
 }
@@ -130,8 +181,8 @@ const DeleteCartItem = async(req, res)=> {
                 userId
             ]
             )
-        res.status(200).json({
-            msg: `Updated entry with id: ${results.rows[0].cartentryid}`
+        return res.status(200).json({
+            msg: `Deleted entry with id: ${cartEntryId}`
         })
     }
     catch(err)

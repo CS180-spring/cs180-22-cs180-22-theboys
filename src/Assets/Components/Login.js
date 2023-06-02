@@ -237,7 +237,7 @@ export default function Login()
                     style={{
                         width: "100%",
                         padding: "0",
-                        marginTop: "-5px",
+                        marginTop: "5px",
                         marginBottom: "50px",
                         flexDirection: "row-reverse"
                     }}
@@ -259,6 +259,7 @@ export default function Login()
                 >
                     <div className="title-text">{"Don't have an account?"}</div>
                     <div 
+                        style={{cursor: "pointer"}}
                         className="title-text"
                         onClick={()=>{
                             setRegister(true);
@@ -397,7 +398,7 @@ export default function Login()
                         style={{
                             width: "100%",
                             padding: "0",
-                            marginTop: "-5px",
+                            marginTop: "5px",
                             marginBottom: "50px",
                             flexDirection: "row-reverse"
                         }}
@@ -424,7 +425,8 @@ export default function Login()
                     }}
                 >
                     <div className="title-text">{"Already have an account?"}</div>
-                    <div 
+                    <div
+                        style={{cursor: "pointer"}}
                         className="title-text"
                         onClick={()=>{
                             setRegister(false);
@@ -443,23 +445,6 @@ export default function Login()
     }
 
     return (
-            <div>
-                 <div 
-                    className="title-text"
-                    style = {{
-                        marginTop: "20px",
-                        marginLeft: "0",
-                        fontSize: "1.8em",
-                        textAlign: "center",
-                        pointerEvents: "none",
-                        cursor: "text"
-                    }}
-                >{"Sign In"}</div>
-                {/*Dont ask me how I screwed this up, but I wrapped
-                the form in a title div. I styled it while is was wrapped in
-                the div and keeping it doesn't ruin anything so I am leaving it.*/}
-                {!register && LoginForm()}
-                {register && RegisterForm()}
-            </div>
+        register ? RegisterForm() : LoginForm()
     )
 }

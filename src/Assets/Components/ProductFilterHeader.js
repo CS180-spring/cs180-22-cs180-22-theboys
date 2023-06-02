@@ -11,6 +11,9 @@ export default function ProductFilterHeader({})
         <div className="product-filter-header">
             <div className="title-text">{'Filter By:'}</div>
             <Select 
+                style = {{
+                    width: '160px'
+                }}
                 options = {[
                     'A-Z',
                     'Price (High-Low)',

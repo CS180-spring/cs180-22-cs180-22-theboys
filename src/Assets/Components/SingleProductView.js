@@ -5,8 +5,13 @@ import Select from "./Select";
 import Carousel from "./Carousel";
 import CarouselProductCard from "./CarouselProductCard";
 import { ProductsContext } from "../../App";
+
+import usePostCart from "../Hooks/usePostCart";
+
 export default function SingleProductView({product}){
     const {products, setProducts} = React.useContext(ProductsContext)
+    const [productQuantity, setProductQuantity] = React.useState(1);
+    const [postingCart, setPostingCart] = usePostCart(product, productQuantity)
 
     const {
         productname, 
@@ -29,6 +34,14 @@ export default function SingleProductView({product}){
         )
     });
 
+    const ChangeSelection = (selection)=> {
+        setProductQuantity(Number(selection));
+        console.log(selection);
+    }
+
+    const postCartItem = ()=> {
+        setPostingCart(true);
+    }
 
     return(
         <div>
@@ -39,8 +52,27 @@ export default function SingleProductView({product}){
                     <div style={{fontSize:"1.2em"}} className="title-text">{productname}</div>
                     <div className="basic-text">{productdescription}</div>
                     <div style={{marginBottom:"0"}} className="basic-text">{"QTY"}</div>
-                    <Select initialText={"1"} options={[1,2,3]}/>
-                    <div style={{marginTop:"15%"}} className="submit-button">{"Add to cart"}</div>
+                    <Select 
+                        style = {{
+                            width: '80px',
+                            marginLeft: '5px'
+                        }}
+                        initialText={"1"} 
+                        options={[1,2,3]}
+                        onChangeSelection={(selection)=> {ChangeSelection(selection)}}    
+                    />
+                    <div 
+                        className="title-text"
+                        style={{marginTop:"15%"}}
+                    >
+                        {`$${Number(productQuantity) * Number(product.productprice)}`}
+                    </div>
+                    <div  
+                        className="submit-button"
+                        onClick = {()=> {postCartItem()}}    
+                    >
+                            {"Add to cart"}
+                    </div>
                 </div>
             </div>
 
