@@ -8,6 +8,10 @@ The primary languages we used in this project are JavaScript, PostgreSQL, HTML, 
 
 ## Project Features
 
+### Sign In
+
+A new customer can choose to register for an account or simply continue as a Guest on our website. Customers who already have an account can sign in easily.
+
 ### Home Page
 
 Once a customer loads our web application, a Home page will be loaded and displayed. The Home page contains various features such as a Sign In link, a Cart Icon, and a Shop link. This Home page allows customers to also be able to view recommended NFTs as well as new arrivals.
@@ -35,7 +39,7 @@ The second area involves a Shop section that can be found at the top of our Home
 
 ### View Cart
 
-A customer can view their cart at any time. They simply need to click on the Cart that can be found in the top right corner of the website. Here, the customer can see all the NFTs that are currentyl in their cart.
+A customer can view their cart at any time. They simply need to click on the Cart that can be found in the top right corner of the website. Here, the customer can see all the NFTs that are currently in their cart.
 
 ### Make Purchases
 
