@@ -46,7 +46,7 @@ A customer can view their cart at any time. They simply need to click on the Car
 
 ### Make Purchases
 
-Once a customer views their cart and is satisfied, they can make a purchase. Our website is able to process payment information efficently and securely. Once a transaction is made, it can be found in the customer's Order History.
+Once a customer views their cart and is satisfied, they can make a purchase. Our website is able to process payment information efficently and securely. Once a transaction is made, a unique Order ID will be generated for the customer's convenience.
 
 
 
