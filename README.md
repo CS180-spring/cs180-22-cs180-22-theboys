@@ -41,6 +41,9 @@ The second area involves a Shop section that can be found at the top of our Home
 
 A customer can view their cart at any time. They simply need to click on the Cart that can be found in the top right corner of the website. Here, the customer can see all the NFTs that are currently in their cart.
 
+<img width="1183" alt="Screenshot 2023-06-02 at 6 06 05 PM" src="https://github.com/CS180-spring/cs180-22-theboys/assets/72373261/8f6adb9d-0946-49cc-a256-a58f5a81c2d6">
+
+
 ### Make Purchases
 
 Once a customer views their cart and is satisfied, they can make a purchase. Our website is able to process payment information efficently and securely. Once a transaction is made, it can be found in the customer's Order History.
